@@ -19,7 +19,7 @@ backup_hosts()
 decl_serv()
 {
   if [[ $# -ge 2 && $(hostname) -ne "$2" ]]; then
-    printf "\n$1 $2\n" | sudo tee --append /etc/hosts > /dev/null
+    printf "\n$1 $2\n" | sudo tee --append /etc/hosts &> /dev/null
   fi
 }
 
