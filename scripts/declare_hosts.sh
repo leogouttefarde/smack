@@ -27,7 +27,7 @@ decl_serv()
       IP="$LOCAL_IP"
     fi
 
-    printf "\n$IP $HOST\n" | sudo tee --append /etc/hosts > /dev/null
+    printf "\n$IP $HOST\n" | sudo tee --append /etc/hosts &> /dev/null
   fi
 }
 
