@@ -2,6 +2,7 @@
 
 HOSTS=/etc/hosts
 HOSTS_BACKUP=$HOSTS.old
+LOCAL_IP=127.0.1.1
 
 # creates a backup of previous hosts
 # and prevents multiple execution
@@ -18,8 +19,15 @@ backup_hosts()
 # adds a server declaration to hosts
 decl_serv()
 {
-  if [[ $# -ge 2 && $(hostname) -ne "$2" ]]; then
-    printf "\n$1 $2\n" | sudo tee --append /etc/hosts > /dev/null
+  if [[ $# -ge 2 ]]; then
+    local IP="$1"
+    local HOST="$2"
+
+    if [[ $(hostname) = "$HOST" ]]; then
+      IP="$LOCAL_IP"
+    fi
+
+    printf "\n$IP $HOST\n" | sudo tee --append /etc/hosts > /dev/null
   fi
 }
 
