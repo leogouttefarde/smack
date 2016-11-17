@@ -16,6 +16,18 @@ backup_hosts()
   fi
 }
 
+# creates a backup of previous hosts
+# and prevents multiple execution
+restore_hosts()
+{
+  if [ -f "$HOSTS_BACKUP" ]; then
+    sudo mv "$HOSTS_BACKUP" "$HOSTS"
+  else
+    echo "No backup of $HOSTS to restore, aborting"
+    exit
+  fi
+}
+
 # adds a server declaration to hosts
 decl_serv()
 {
@@ -38,5 +50,6 @@ backup_hosts
 decl_serv 213.32.72.246 server-1
 decl_serv 213.32.72.245 server-2
 decl_serv 213.32.72.62 server-3
+decl_serv 149.202.188.215 server-4
 
 

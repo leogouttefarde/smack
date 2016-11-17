@@ -14,8 +14,7 @@ remote_run()
 
 
 # install each server
-for i in {1..3}
-do
+for i in {1..4}; do
   remote_run server-$i server_install.sh
 done
 
