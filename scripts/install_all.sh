@@ -1,10 +1,15 @@
 # global installation script that installs everything, everywhere
 
-# runs a script remotely
+# runs a script remotely & asynchronously
 remote_run()
 {
   if [[ $# -ge 2 && -f "$2" && "$2" = *.sh ]]; then
-    ssh -oStrictHostKeyChecking=no -i ~/.ssh/xnet xnet@$1 'bash -s' < "$2"
+    local SPATH=/tmp/$(basename $2)
+    scp -oStrictHostKeyChecking=no -i ~/.ssh/xnet $2 xnet@$1:$SPATH
+
+    # fixes weird var expand bug
+    local CMD=$(echo "nohup sh $SPATH &> /dev/null &")
+    ssh -oStrictHostKeyChecking=no -i ~/.ssh/xnet xnet@$1 "$CMD"
   fi
 }
 
