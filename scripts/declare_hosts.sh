@@ -28,18 +28,29 @@ restore_hosts()
   fi
 }
 
+# adds a declaration to hosts
+append_host()
+{
+  if [[ $# -ge 2 ]]; then
+    printf "$1 $2\n" | sudo tee --append /etc/hosts &> /dev/null
+  fi
+}
+
 # adds a server declaration to hosts
 decl_serv()
 {
   if [[ $# -ge 2 ]]; then
     local IP="$1"
     local HOST="$2"
+    local NUM=${HOST: -1}
+    local NODE=node$NUM
 
     if [[ $(hostname) = "$HOST" ]]; then
       IP="$LOCAL_IP"
     fi
 
-    printf "\n$IP $HOST\n" | sudo tee --append /etc/hosts &> /dev/null
+    append_host "\n$IP" $HOST
+    append_host $IP $NODE
   fi
 }
 
