@@ -42,7 +42,7 @@ decl_serv()
   if [[ $# -ge 2 ]]; then
     local IP="$1"
     local HOST="$2"
-    local NUM=${HOST: -1}
+    local NUM="${HOST##*-}"
     local NODE=node$NUM
 
     if [[ $(hostname) = "$HOST" ]]; then
