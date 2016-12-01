@@ -16,8 +16,7 @@ backup_hosts()
   fi
 }
 
-# creates a backup of previous hosts
-# and prevents multiple execution
+# restores original hosts file
 restore_hosts()
 {
   if [ -f "$HOSTS_BACKUP" ]; then
