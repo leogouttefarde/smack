@@ -1,5 +1,6 @@
 # global installation script that installs everything, everywhere
 
+
 # runs a script remotely & asynchronously
 remote_run()
 {
@@ -12,6 +13,23 @@ remote_run()
     ssh -oStrictHostKeyChecking=no -i ~/.ssh/xnet xnet@$1 "$CMD"
   fi
 }
+
+
+RES=~/setup.zip
+
+
+# for each node
+for i in {1..4}; do
+
+  SERV=server-$i
+
+  scp -oStrictHostKeyChecking=no -i ~/.ssh/xnet ${RES} xnet@${SERV}:~
+  ssh -oStrictHostKeyChecking=no -i ~/.ssh/xnet xnet@${SERV} "unzip -o ~/setup.zip"
+
+done
+
+
+cd ~/scripts
 
 
 # configure hosts
