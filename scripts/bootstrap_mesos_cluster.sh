@@ -1,34 +1,34 @@
 #!/bin/bash
-MASTER='server-1'
-SLAVES=('server-2' 'server-3' 'server-4')
-
+#first node is the master
+NODES=('server-1' 'server-2' 'server-3' 'server-4')
 
 function install_deps {
-	ssh -q -i ~/.ssh/xnet $1 "bash -s" < ./install_node_deps.sh
+    if [[ $1 -eq ${NODES[0]} ]]; then
+    	ssh -q -i ~/.ssh/xnet $1 "bash -s > /dev/null 2>&1" < ./install_node_deps.sh $1 &
+    else
+	    ssh -q -i ~/.ssh/xnet $1 "bash -s > /dev/null 2>&1" < ./install_node_deps.sh &
+    fi
 }
 
-function configure_master {
-	ssh -q -i ~/.ssh/xnet $1 "bash -s" < ./configure_mesos_master.sh
+function configure_mesos_master {
+	ssh -q -i ~/.ssh/xnet $1 "bash -s > /dev/null 2>&1" < ./configure_mesos_master.sh &
 }
 
-function configure_slave {
-	ssh -q -i ~/.ssh/xnet $1 "bash -s" < ./configure_mesos_slave.sh
+function configure_mesos_slave {
+	ssh -q -i ~/.ssh/xnet $1 "bash -s > /dev/null 2>&1" < ./configure_mesos_slave.sh &
 }
 
-echo 'Installation des dépendances pour le master'
-install_deps ${MASTER}
-
-for slave in "${SLAVES[@]}"
+echo "Installation des dépendances"
+for node in "${NODES[@]}"
 	do
-		echo "Installation des dépendances pour l'esclave "${slave}
-		install_deps ${slave}
+		install_deps ${node}
 	done
 
 echo 'Configuration du master'
-configure_master ${MASTER}
+configure_mesos_master ${NODES[0]}
 
-for slave in "${SLAVES[@]}"
+for slave in "${NODES[@]:1}"
 	do
 		echo "Configuration de l'esclave "${slave}
-		configure_slave ${slave}
+		configure_mesos_slave ${slave}
 	done
