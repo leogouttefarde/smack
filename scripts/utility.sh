@@ -9,12 +9,22 @@ HOSTS_BACKUP=$HOSTS.old
 LOCAL_IP=127.0.1.1
 MY_IP=$(cat $IP_FILE)
 
+
 # Runs a remote command (asynchronous)
 # Usage : remote_run <server> <script>
 remote_run()
 {
   if [[ $# -ge 2 ]]; then
     ssh -q ${SSH_OPTS} xnet@$1 "$2" &
+  fi
+}
+
+# Runs a remote command (synchrone)
+# Usage : remote_run_sync <server> <script>
+remote_run_sync()
+{
+  if [[ $# -ge 2 ]]; then
+    ssh -q ${SSH_OPTS} xnet@$1 "$2"
   fi
 }
 
@@ -50,7 +60,7 @@ setup_res()
     SERV=server-$i
 
     CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}"
-    remote_run $SERV "${CMD}"
+    remote_run_sync $SERV "${CMD}"
 
   done
 
