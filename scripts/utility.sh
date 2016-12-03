@@ -7,6 +7,7 @@ IP_FILE=/etc/my_ip
 HOSTS=/etc/hosts
 HOSTS_BACKUP=$HOSTS.old
 LOCAL_IP=127.0.1.1
+MY_IP=$(cat $IP_FILE)
 
 # Runs a remote command (asynchronous)
 # Usage : remote_run <server> <script>

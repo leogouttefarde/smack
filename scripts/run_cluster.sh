@@ -4,9 +4,6 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
-MY_IP=$(cat $IP_FILE)
-
-
 echo 'Lancement du master'
 remote_run $MASTER ~/scripts/run_mesos_master.sh
 
