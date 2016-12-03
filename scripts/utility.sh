@@ -32,7 +32,7 @@ setup_res()
 
     SERV=server-$i
 
-    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}"
+    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES} ${SILENT}; unzip -fo ${ZIP} ${SILENT}"
 
   done
 
