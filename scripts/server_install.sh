@@ -7,6 +7,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # configure hosts
 ~/scripts/declare_hosts.sh
 
+# Install Mesos & Spark
 install_deps $(hostname)
 
 
@@ -27,4 +28,7 @@ else
 
 fi
 
+
+# Install Scala
+sudo apt -y install scala
 

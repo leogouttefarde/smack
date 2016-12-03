@@ -5,9 +5,9 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 
 echo 'Lancement du master'
-remote_run $MASTER ~/scripts/run_mesos_master.sh
+remote_run_sync $MASTER ~/scripts/run_mesos_master.sh
 
-sleep 5
+#sleep 5
 
 
 echo 'Lancement des esclaves'
