@@ -10,7 +10,7 @@ remote_run()
 {
   if [[ $# -ge 2 && -f "$2" && "$2" = *.sh ]]; then
     local SPATH=/tmp/$(basename $2)
-    scp ${SSH_OPTS} $2 xnet@$1:$SPATH
+    scp ${SSH_OPTS} $2 xnet@$1:$SPATH ${SILENT}
 
     # fixes weird var expand bug
     local CMD=$(echo "nohup sh $SPATH &> /dev/null &")
