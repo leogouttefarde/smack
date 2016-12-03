@@ -24,7 +24,7 @@ setup_res()
   ZIP=setup.zip
 
   # configure hosts
-  ./declare_hosts.sh
+  ~/scripts/declare_hosts.sh
 
   # for each node
   for i in {1..4}; do
