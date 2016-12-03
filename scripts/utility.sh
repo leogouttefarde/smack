@@ -1,6 +1,6 @@
 
 RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
-SSH_OPTS="-oStrictHostKeyChecking=no -i ~/.ssh/xnet"
+SSH_OPTS="-q -oStrictHostKeyChecking=no -i ~/.ssh/xnet"
 SILENT="&>/dev/null"
 
 IP_FILE=/etc/my_ip
@@ -11,20 +11,20 @@ MY_IP=$(cat $IP_FILE)
 
 
 # Runs a remote command (asynchronous)
-# Usage : remote_run <server> <script>
+# Usage : remote_run <server> <cmd>
 remote_run()
 {
   if [[ $# -ge 2 ]]; then
-    ssh -q ${SSH_OPTS} xnet@$1 "$2" &
+    ssh ${SSH_OPTS} xnet@$1 "$2" &
   fi
 }
 
 # Runs a remote command (synchrone)
-# Usage : remote_run_sync <server> <script>
+# Usage : remote_run_sync <server> <cmd>
 remote_run_sync()
 {
   if [[ $# -ge 2 ]]; then
-    ssh -q ${SSH_OPTS} xnet@$1 "$2"
+    ssh ${SSH_OPTS} xnet@$1 "$2"
   fi
 }
 
