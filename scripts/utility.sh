@@ -3,6 +3,9 @@ RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
 SSH_OPTS="-oStrictHostKeyChecking=no -i ~/.ssh/xnet"
 SILENT="&>/dev/null"
 
+HOSTS=/etc/hosts
+HOSTS_BACKUP=$HOSTS.old
+LOCAL_IP=127.0.1.1
 
 # Runs a script remotely & asynchronously.
 # Usage : remote_run <server> <script>
@@ -41,6 +44,19 @@ setup_res()
   done
 
   cd ~/scripts
+}
+
+# Checks if the server was already installed
+is_installed()
+{
+  if [ -f "$HOSTS_BACKUP" ]; then
+
+    # 0 for success
+    return 0
+  fi
+
+  # failure
+  return -1
 }
 
 

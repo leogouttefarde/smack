@@ -4,6 +4,10 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
+# Abort if already installed
+if is_installed ; then
+  exit
+fi
 
 setup_res
 

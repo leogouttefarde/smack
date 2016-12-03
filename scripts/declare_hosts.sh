@@ -1,8 +1,8 @@
 # configures hosts
 
-HOSTS=/etc/hosts
-HOSTS_BACKUP=$HOSTS.old
-LOCAL_IP=127.0.1.1
+DIR=$(cd "$(dirname "$0")" && pwd)
+. "$DIR"/utility.sh
+
 
 # creates a backup of previous hosts
 # and prevents multiple execution
