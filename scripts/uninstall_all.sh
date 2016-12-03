@@ -10,8 +10,15 @@ setup_res
 # reset each server
 for i in {1..4}; do
 
-  ssh ${SSH_OPTS} xnet@server-$i "~/scripts/declare_hosts.sh undo"
+  SERV=server-$i
+
+  if [[ $(hostname) = "$SERV" ]]; then
+    SELF=$SERV
+  else
+    ssh ${SSH_OPTS} xnet@$SERV "~/scripts/declare_hosts.sh undo"
+  fi
 
 done
 
+~/scripts/declare_hosts.sh undo
 

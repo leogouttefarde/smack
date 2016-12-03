@@ -21,12 +21,14 @@ setup_res()
 {
   cd ~
 
+  ZIP=setup.zip
+
   # for each node
   for i in {1..4}; do
 
     SERV=server-$i
 
-    ssh ${SSH_OPTS} xnet@${SERV} "wget ${RES}; unzip -o setup.zip"
+    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES}; unzip -o ${ZIP}"
 
   done
 
