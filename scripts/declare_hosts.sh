@@ -35,6 +35,12 @@ append_host()
   fi
 }
 
+# adds a declaration of the external ip in /etc/my_ip for further use
+create_my_ip_file(){
+    if [[ $# -ge 1 ]]; then
+      echo $1 | sudo tee /etc/my_ip &> /dev/null
+    fi
+}
 # adds a server declaration to hosts
 decl_serv()
 {
@@ -50,6 +56,7 @@ decl_serv()
 
     append_host "\n$IP" $HOST
     append_host $IP $NODE
+    create_my_ip_file $IP
   fi
 }
 
