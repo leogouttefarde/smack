@@ -2,6 +2,6 @@
 
 
 # configure hosts
-./declare_hosts.sh
+~/scripts/declare_hosts.sh
 
 

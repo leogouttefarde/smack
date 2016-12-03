@@ -56,6 +56,7 @@ decl_serv()
 if [ $# -ge 1 ]; then
 
   restore_hosts
+  echo "Hosts restauration finished"
 
 else
 
@@ -67,6 +68,8 @@ else
   decl_serv 213.32.72.245 server-2
   decl_serv 213.32.72.62 server-3
   decl_serv 149.202.188.215 server-4
+
+  echo "Hosts installation finished"
 
 fi;
 

@@ -1,6 +1,7 @@
 
 SSH_OPTS="-oStrictHostKeyChecking=no -i ~/.ssh/xnet"
 RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
+SILENT="&>/dev/null"
 
 # Runs a script remotely & asynchronously.
 # Usage : remote_run <server> <script>
@@ -21,7 +22,7 @@ setup_res()
 {
   cd ~
 
-  ZIP=setup.zip
+  ZIP=~/setup.zip
 
   # configure hosts
   ~/scripts/declare_hosts.sh
@@ -31,7 +32,7 @@ setup_res()
 
     SERV=server-$i
 
-    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES} &>/dev/null; unzip -o ${ZIP}"
+    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}"
 
   done
 
