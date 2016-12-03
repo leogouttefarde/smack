@@ -15,10 +15,12 @@ for i in {1..4}; do
   if [[ $(hostname) = "$SERV" ]]; then
     SELF=$SERV
   else
+    echo "Resetting $SERV"
     ssh ${SSH_OPTS} xnet@$SERV "~/scripts/declare_hosts.sh undo"
   fi
 
 done
 
+echo "Resetting $SELF"
 ~/scripts/declare_hosts.sh undo
 

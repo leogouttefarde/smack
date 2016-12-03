@@ -23,18 +23,18 @@ setup_res()
 
   ZIP=setup.zip
 
+  # configure hosts
+  ./declare_hosts.sh
+
   # for each node
   for i in {1..4}; do
 
     SERV=server-$i
 
-    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES}; unzip -o ${ZIP}"
+    ssh ${SSH_OPTS} xnet@${SERV} "wget -O ${ZIP} ${RES} &>/dev/null; unzip -o ${ZIP}"
 
   done
 
   cd ~/scripts
-
-  # configure hosts
-  ./declare_hosts.sh
 }
 
