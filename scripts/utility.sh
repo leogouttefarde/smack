@@ -45,8 +45,6 @@ send_run()
 
 setup_res()
 {
-  echo "Preparing setup"
-
   cd ~
 
   ZIP=~/setup.zip
@@ -58,8 +56,10 @@ setup_res()
   for i in {1..4}; do
 
     SERV=server-$i
+ 
+    echo "Updating setup on $SERV"
 
-    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}"
+    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
     remote_run_sync $SERV "${CMD}"
 
   done

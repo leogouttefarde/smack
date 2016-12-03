@@ -1,10 +1,10 @@
 
-
+ZIP=setup.zip
 
 all:
-	zip setup.zip -r scripts
+	zip ${ZIP} -r scripts
+	md5sum ${ZIP}
 
 clean:
-	rm -f setup.zip
-
+	rm -f ${ZIP}
 
