@@ -10,7 +10,10 @@ setup_res
 # install each server
 for i in {1..4}; do
 
-  remote_run server-$i ~/scripts/server_install.sh
+  SERV=server-$i
+
+  echo "Installing $SERV"
+  remote_run $SERV ~/scripts/server_install.sh
 
 done
 
