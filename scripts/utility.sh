@@ -3,17 +3,17 @@ RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
 SSH_OPTS="-oStrictHostKeyChecking=no -i ~/.ssh/xnet"
 SILENT="&>/dev/null"
 
+IP_FILE=/etc/my_ip
 HOSTS=/etc/hosts
 HOSTS_BACKUP=$HOSTS.old
 LOCAL_IP=127.0.1.1
 
-# Runs a remote script (asynchronous)
+# Runs a remote command (asynchronous)
 # Usage : remote_run <server> <script>
-# Scripts must have the .sh extension
 remote_run()
 {
-  if [[ $# -ge 2 && "$2" = *.sh ]]; then
-    ssh -q ${SSH_OPTS} xnet@$1 "bash $2" &
+  if [[ $# -ge 2 ]]; then
+    ssh -q ${SSH_OPTS} xnet@$1 "$2" &
   fi
 }
 
@@ -28,7 +28,7 @@ send_run()
 
     # fixes weird var expand bug
     local CMD=$(echo "nohup bash $SPATH &> /dev/null &")
-    ssh -q ${SSH_OPTS} xnet@$1 "${CMD}"
+    remote_run $SERV "${CMD}"
   fi
 }
 
@@ -49,7 +49,7 @@ setup_res()
     SERV=server-$i
 
     CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}"
-    ssh -q ${SSH_OPTS} xnet@${SERV} "${CMD}"
+    remote_run $SERV "${CMD}"
 
   done
 
@@ -72,26 +72,32 @@ is_installed()
 
 # First node is the master
 NODES=('server-1' 'server-2' 'server-3' 'server-4')
+SLAVES=${NODES[@]:1}
+MASTER='server-1'
 
 #Installation des dépendances
 install_deps()
 {
-    #Si on est entrain de configurer le master on ajoute son hostname aux arguments du script
-    #Le master requiert un peu plus de config, notamment pour spark
-    if [[ $1 -eq ${NODES[0]} ]]; then
-      ssh -q ${SSH_OPTS} $1 "bash -s > /dev/null 2>&1" < ./install_node_deps.sh $1
-    else
-      ssh -q ${SSH_OPTS} $1 "bash -s > /dev/null 2>&1" < ./install_node_deps.sh
-    fi
+  #Si on est entrain de configurer le master on ajoute son hostname aux arguments du script
+  #Le master requiert un peu plus de config, notamment pour spark
+  if [[ $1 -eq $MASTER ]]; then
+    remote_run $1 ~/scripts/install_node_deps.sh $1
+  else
+    remote_run $1 ~/scripts/install_node_deps.sh
+  fi
 }
 
 configure_mesos_master()
 {
-  ssh -q ${SSH_OPTS} "bash -s > /dev/null 2>&1" < ./configure_mesos_master.sh &
+  if [[ $# -ge 2 ]]; then
+    remote_run $1 ~/scripts/configure_mesos_master.sh
+  fi
 }
 
 configure_mesos_slave()
 {
-  ssh -q ${SSH_OPTS} $1 "bash -s > /dev/null 2>&1" < ./configure_mesos_slave.sh &
+  if [[ $# -ge 2 ]]; then
+    remote_run $1 ~/scripts/configure_mesos_slave.sh
+  fi
 }
 

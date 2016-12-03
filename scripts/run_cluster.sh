@@ -1,13 +1,22 @@
-#!/usr/bin/env bash
+#! /bin/bash
 
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
+
+MY_IP=$(cat $IP_FILE)
+
+
 echo 'Lancement du master'
-ssh -q ${SSH_OPTS} ${NODES[0]} "bash -s > /dev/null 2>&1" < ./run_mesos_master.sh &
+remote_run $MASTER ~/scripts/run_mesos_master.sh
+
 sleep 5
+
+
 echo 'Lancement des esclaves'
-for slave in "${NODES[@]:1}"
-	do
-        ssh -q ${SSH_OPTS} ${slave} "bash -s > /dev/null 2>&1" < ./run_mesos_slave.sh ${NODES[0]} &
-	done
+
+for slave in ${SLAVES}
+  do
+    remote_run ${slave} "~/scripts/run_mesos_slave.sh $MASTER"
+  done
+

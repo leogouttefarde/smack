@@ -1,4 +1,7 @@
-#!/usr/bin/env bash
+#! /bin/bash
 
-MY_IP=$(cat /etc/my_ip)
+DIR=$(cd "$(dirname "$0")" && pwd)
+. "$DIR"/utility.sh
+
 sudo mesos-master --ip=${MY_IP} --work_dir=/var/lib/mesos > /dev/null 2>&1
+

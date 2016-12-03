@@ -31,16 +31,18 @@ restore_hosts()
 append_host()
 {
   if [[ $# -ge 2 ]]; then
-    printf "$1 $2\n" | sudo tee --append /etc/hosts &> /dev/null
+    printf "$1 $2\n" | sudo tee --append $HOSTS &> /dev/null
   fi
 }
 
 # adds a declaration of the external ip in /etc/my_ip for further use
-create_my_ip_file(){
-    if [[ $# -ge 1 ]]; then
-      echo $1 | sudo tee /etc/my_ip &> /dev/null
-    fi
+create_my_ip_file()
+{
+  if [[ $# -ge 1 ]]; then
+    echo $1 | sudo tee $IP_FILE &> /dev/null
+  fi
 }
+
 # adds a server declaration to hosts
 decl_serv()
 {
@@ -51,14 +53,15 @@ decl_serv()
     local NODE=node$NUM
 
     if [[ $(hostname) = "$HOST" ]]; then
-      IP="$LOCAL_IP"
+      create_my_ip_file $IP
+      #IP="$LOCAL_IP"
     fi
 
     append_host "\n$IP" $HOST
     append_host $IP $NODE
-    create_my_ip_file $IP
   fi
 }
+
 
 if [ $# -ge 1 ]; then
 

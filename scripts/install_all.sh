@@ -25,12 +25,3 @@ for i in {1..4}; do
 done
 
 
-echo 'Configuration du master mesos'
-configure_mesos_master ${NODES[0]}
-
-for slave in "${NODES[@]:1}"
-	do
-		echo "Configuration de l'esclave mesos "${slave}
-		configure_mesos_slave ${slave}
-	done
-

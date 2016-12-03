@@ -16,7 +16,7 @@ for i in {1..4}; do
     SELF=$SERV
   else
     echo "Resetting $SERV"
-    ssh ${SSH_OPTS} xnet@$SERV "~/scripts/declare_hosts.sh undo"
+    remote_run $SERV "~/scripts/declare_hosts.sh undo"
   fi
 
 done
