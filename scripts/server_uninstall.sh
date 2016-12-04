@@ -1,4 +1,4 @@
-# server installation script that installs everything for a single machine
+# Server uninstallation script that uninstalls everything for a single machine
 
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
