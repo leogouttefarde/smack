@@ -10,6 +10,11 @@ HOSTS_BACKUP=$HOSTS.old
 LOCAL_IP=127.0.1.1
 MY_IP=$(cat $IP_FILE)
 
+# First node is the master
+NODES=('server-1' 'server-2' 'server-3' 'server-4')
+SLAVES=${NODES[@]:1}
+MASTER='server-1'
+
 
 # Runs a remote command (asynchronous)
 # Usage : remote_run <server> <cmd>
@@ -108,14 +113,9 @@ check_installed()
   fi
 }
 
-
-# First node is the master
-NODES=('server-1' 'server-2' 'server-3' 'server-4')
-SLAVES=${NODES[@]:1}
-MASTER='server-1'
-
 #Installation des dépendances
 install_deps()
 {
     remote_run_sync $1 ~/scripts/install_node_deps.sh
 }
+

@@ -1,3 +1,4 @@
+#! /bin/bash
 # configures hosts
 
 DIR=$(cd "$(dirname "$0")" && pwd)
@@ -10,10 +11,13 @@ backup_hosts()
 {
   if ! [ -f "$HOSTS_BACKUP" ]; then
     sudo cp "$HOSTS" "$HOSTS_BACKUP"
+    return 0
+
   else
     echo "A backup of $HOSTS already exists, aborting"
-    exit
   fi
+
+  return -1
 }
 
 # restores original hosts file
@@ -21,10 +25,13 @@ restore_hosts()
 {
   if [ -f "$HOSTS_BACKUP" ]; then
     sudo mv "$HOSTS_BACKUP" "$HOSTS"
+    return 0
+
   else
     echo "No backup of $HOSTS to restore, aborting"
-    exit
   fi
+
+  return -1
 }
 
 # adds a declaration to hosts
@@ -65,21 +72,23 @@ decl_serv()
 
 if [ $# -ge 1 ]; then
 
-  restore_hosts
-  echo "Hosts restauration finished"
+  if restore_hosts ; then
+    echo "Hosts restauration finished"
+  fi
 
 else
 
   # backup hosts
-  backup_hosts
+  if backup_hosts ; then
 
-  # declare all servers
-  decl_serv 213.32.72.246 server-1
-  decl_serv 213.32.72.245 server-2
-  decl_serv 213.32.72.62 server-3
-  decl_serv 149.202.188.215 server-4
+    # declare all servers
+    decl_serv 213.32.72.246 server-1
+    decl_serv 213.32.72.245 server-2
+    decl_serv 213.32.72.62 server-3
+    decl_serv 149.202.188.215 server-4
 
-  echo "Hosts installation finished"
+    echo "Hosts installation finished"
+  fi
 
 fi;
 
