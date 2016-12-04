@@ -2,6 +2,7 @@
 RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
 SSH_OPTS="-q -oStrictHostKeyChecking=no -i ~/.ssh/xnet"
 SILENT="&>/dev/null"
+MARKER=/etc/smack_installed
 
 IP_FILE=/etc/my_ip
 HOSTS=/etc/hosts
@@ -43,6 +44,16 @@ send_run()
   fi
 }
 
+finish_server_install()
+{
+  echo installed | sudo tee $MARKER
+}
+
+finish_server_uninstall()
+{
+  sudo rm -f $MARKER
+}
+
 setup_res()
 {
   cd ~
@@ -74,7 +85,7 @@ setup_res()
 # Checks if the server was already installed
 is_installed()
 {
-  if [ -f "$HOSTS_BACKUP" ]; then
+  if [ -f $HOSTS_BACKUP && -f $MARKER ]; then
 
     # 0 for success
     return 0

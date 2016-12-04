@@ -25,3 +25,5 @@ for i in {1..4}; do
 done
 
 
+finish_server_install
+

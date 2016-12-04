@@ -32,3 +32,6 @@ fi
 # Install Scala
 sudo apt -y install scala
 
+
+finish_server_install
+

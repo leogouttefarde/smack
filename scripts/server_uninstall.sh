@@ -25,3 +25,6 @@ sudo apt -y autoremove
 # Uninstall hosts once the rest is finished
 ~/scripts/declare_hosts.sh undo
 
+
+finish_server_uninstall
+
