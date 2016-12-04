@@ -5,12 +5,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 # Abort if already installed
-if is_installed ; then
-
-  echo "This server is already installed, aborting"
-  exit
-
-fi
+check_installed
 
 setup_res
 
