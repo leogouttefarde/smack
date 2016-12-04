@@ -59,6 +59,10 @@ setup_res()
  
     echo "Updating setup on $SERV"
 
+    # Refresh raw file ? Seems required for updates
+    curl -s https://github.com/leogouttefarde/smack/blob/master/setup.zip?raw=true &>/dev/null
+    curl -s https://github.com/leogouttefarde/smack/raw/master/setup.zip &>/dev/null
+
     CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
     remote_run_sync $SERV "${CMD}"
 
