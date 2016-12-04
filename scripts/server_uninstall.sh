@@ -19,7 +19,7 @@ sudo rm -f /etc/init/mesos-*.override /etc/init/zookeeper.override
 # Remove Scala
 sudo apt -y remove scala
 
-sudo apt autoremove
+sudo apt -y autoremove
 
 
 # Uninstall hosts once the rest is finished
