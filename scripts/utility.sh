@@ -46,7 +46,7 @@ send_run()
 
 finish_server_install()
 {
-  echo installed | sudo tee $MARKER
+  echo installed | sudo tee $MARKER &>/dev/null
 }
 
 finish_server_uninstall()
