@@ -30,22 +30,23 @@ rm -f ~/${SPARK_TAR}
 SELF=$(hostname)
 
 if [[ ${SELF} = ${MASTER} ]]; then
-    echo 'spark.master mesos://zk://'$1':2181/mesos'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf &> /dev/null
+    echo 'spark.master mesos://zk://'${MASTER}':2181/mesos'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf &> /dev/null
     printf '\nspark.executor.memory 512m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf &> /dev/null
     echo 'export MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-env.sh &> /dev/null
 
     #Installation de Kafka (seulement au niveau du master)
     sudo apt -y install openjdk-8-jdk
     git clone https://github.com/mesos/kafka
-    ./kafka/gradlew jar
+    cd kafka && ./gradlew jar
     wget -P ~/kafka ${KAFKA_LINK}
     export MESOS_NATIVE_JAVA_LIBRARY=/usr/local/lib/libmesos.so
     export LIBPROCESS_IP=$(cat /etc/my_ip)
 
-    printf '\nuser=xnet'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
+    printf '\nuser=xnet'| sudo tee ~/kafka/kafka-mesos.properties &> /dev/null
+    printf '\nzk='${SELF}':2181'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
     printf '\nstorage=zk:/mesos-kafka-scheduler'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
-    printf '\nmaster=zk://'$1':2181/mesos'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
-    printf '\napi=http://'$1':7000'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
+    printf '\nmaster=zk://'${MASTER}':2181/mesos'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
+    printf '\napi=http://'${MASTER}':7000'| sudo tee --append ~/kafka/kafka-mesos.properties &> /dev/null
 
 fi
 
