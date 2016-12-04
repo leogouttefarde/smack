@@ -15,6 +15,8 @@ sudo apt-key del E56151BF
 
 sudo rm -f /etc/init/mesos-*.override /etc/init/zookeeper.override
 
+sudo rm -rf ~/kafka
+
 
 # Remove Scala
 sudo apt-get -y remove scala

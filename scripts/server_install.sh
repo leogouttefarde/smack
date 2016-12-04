@@ -11,15 +11,14 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 SELF=$(hostname)
 
 
-# Install Mesos & Spark
+# Install Mesos, Spark, Kafka
 install_deps $SELF
 
 
 echo manual | sudo tee /etc/init/zookeeper.override &> /dev/null
 
 
-if [[ $SELF = $MASTER ]]; then
-
+if [[ ${SELF} = ${MASTER} ]]; then
   echo 'Configuration du master mesos'
   echo manual | sudo tee /etc/init/mesos-slave.override &> /dev/null
   echo 1 | sudo tee /etc/zookeeper/conf/myid &> /dev/null

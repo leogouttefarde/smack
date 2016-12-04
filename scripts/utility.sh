@@ -106,9 +106,9 @@ install_deps()
 {
   #Si on est entrain de configurer le master on ajoute son hostname aux arguments du script
   #Le master requiert un peu plus de config, notamment pour spark
-  if [[ $1 -eq $MASTER ]]; then
-    remote_run $1 ~/scripts/install_node_deps.sh $1
-  else
+#  if [[ $1 -eq $MASTER ]]; then
+#    remote_run $1 ~/scripts/install_node_deps.sh $1
+#  else
     remote_run $1 ~/scripts/install_node_deps.sh
-  fi
+#  fi
 }
