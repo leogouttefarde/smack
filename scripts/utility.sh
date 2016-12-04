@@ -125,18 +125,3 @@ install_deps()
     remote_run $1 ~/scripts/install_node_deps.sh
   fi
 }
-
-configure_mesos_master()
-{
-  if [[ $# -ge 2 ]]; then
-    remote_run $1 ~/scripts/configure_mesos_master.sh
-  fi
-}
-
-configure_mesos_slave()
-{
-  if [[ $# -ge 2 ]]; then
-    remote_run $1 ~/scripts/configure_mesos_slave.sh
-  fi
-}
-
