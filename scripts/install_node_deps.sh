@@ -17,7 +17,7 @@ sudo apt-get -y update
 sudo apt-get -y install mesos
 
 # Installation de spark
-wget -P ~ ${SPARK_LINK}
+wget -P ~ ${SPARK_LINK} &>/dev/null
 tar -xzf ~/${SPARK_TAR}
 
 # Not useful anymore, clean it
