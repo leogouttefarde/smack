@@ -4,6 +4,10 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
+# Abort if already installed
+check_installed
+
+
 # configure hosts
 ~/scripts/declare_hosts.sh
 

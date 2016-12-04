@@ -82,7 +82,7 @@ setup_res()
   cd ~/scripts
 }
 
-# Checks if the server was already installed
+# Tells if the server was already installed
 is_installed()
 {
   if [[ -f $HOSTS_BACKUP && -f $MARKER ]]; then
@@ -93,6 +93,19 @@ is_installed()
 
   # failure
   return -1
+}
+
+# Checks if the server was already installed
+# Exits with a message if it was
+check_installed()
+{
+  # Abort if already installed
+  if is_installed ; then
+
+    echo "This server is already installed, aborting"
+    exit
+
+  fi
 }
 
 
