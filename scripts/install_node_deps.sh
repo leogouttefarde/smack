@@ -29,3 +29,9 @@ if [[ $# -eq 1 ]]; then
     printf '\nspark.executor.memory 512m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf &> /dev/null
     echo 'export MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-env.sh &> /dev/null
 fi
+
+
+# Install Scala
+sudo apt-get -y install scala
+
+

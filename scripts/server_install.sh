@@ -7,11 +7,13 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # configure hosts
 ~/scripts/declare_hosts.sh
 
-# Install Mesos & Spark
-install_deps $(hostname)
-
 
 SELF=$(hostname)
+
+
+# Install Mesos & Spark
+install_deps $SELF
+
 
 echo manual | sudo tee /etc/init/zookeeper.override &> /dev/null
 
@@ -27,10 +29,6 @@ else
   echo manual | sudo tee /etc/init/mesos-master.override &> /dev/null
 
 fi
-
-
-# Install Scala
-sudo apt -y install scala
 
 
 finish_server_install
