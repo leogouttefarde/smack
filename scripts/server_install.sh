@@ -39,5 +39,5 @@ fi
 
 finish_server_install
 
-echo 'Installation du serveur $SELF terminée'
+echo "Installation du serveur $SELF terminée"
 

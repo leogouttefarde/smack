@@ -13,21 +13,21 @@ KAFKA_LINK='https://archive.apache.org/dist/kafka/0.8.2.2/kafka_2.10-0.8.2.2.tgz
 
 SELF=$(hostname)
 
-echo 'Installation clé E56151BF sur $SELF'
+echo "Installation clé E56151BF sur $SELF"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
 echo "deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main" | sudo tee /etc/apt/sources.list.d/mesosphere.list
 
 
-echo 'Mise à jour du cache sur $SELF'
+echo "Mise à jour du cache sur $SELF"
 
 # Mise à jour du cache pour avoir accès aux nouveaux composants
 sudo apt-get -y update
 
 
-echo 'Installation de mesos sur $SELF'
+echo "Installation de mesos sur $SELF"
 sudo apt-get -y install mesos
 
-echo 'Installation de spark sur $SELF'
+echo "Installation de spark sur $SELF"
 wget -P ~ ${SPARK_LINK} 2>/dev/null
 tar -xzf ~/${SPARK_TAR}
 
@@ -36,7 +36,7 @@ rm -f ~/${SPARK_TAR}
 
 if [[ ${SELF} = ${MASTER} ]]; then
 
-  echo 'Serveur maître détecté'
+  echo "Serveur maître détecté"
 
   echo 'spark.master mesos://zk://'${MASTER}':2181/mesos'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
   printf '\nspark.executor.memory 512m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
@@ -68,9 +68,9 @@ if [[ ${SELF} = ${MASTER} ]]; then
 fi
 
 
-echo 'Installation de Scala sur $SELF'
+echo "Installation de Scala sur $SELF"
 sudo apt-get -y install scala
 
 
-echo 'Installation des dépendances terminée sur $SELF'
+echo "Installation des dépendances terminée sur $SELF"
 
