@@ -4,10 +4,12 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
-# Remove Spark & Mesos
+# Remove Spark, Mesos, Kafka, Zookeeper
 rm -rf spark-2.0.2-bin-hadoop2.7
 
 sudo apt-get -y remove mesos
+
+sudo apt-get -y remove zookeeper
 
 sudo rm /etc/apt/sources.list.d/mesosphere.list
 
