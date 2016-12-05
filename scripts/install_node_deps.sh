@@ -39,7 +39,7 @@ if [[ ${SELF} = ${MASTER} ]]; then
   echo "Serveur maître détecté"
 
   echo 'spark.master mesos://zk://'${MASTER}':2181/mesos'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
-  printf '\nspark.executor.memory 512m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
+  printf '\nspark.executor.memory 256m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
   echo 'export MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-env.sh
 
 
