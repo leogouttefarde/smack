@@ -90,7 +90,7 @@ setup_res()
 # Tells if the server was already installed
 is_installed()
 {
-  if [[ -f $HOSTS_BACKUP && -f $MARKER ]]; then
+  if [[ -f $MARKER ]]; then
 
     # 0 for success
     return 0
