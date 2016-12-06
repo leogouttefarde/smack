@@ -1,0 +1,3 @@
+Programme de test des producteurs et consommateurs Kafka en localhost, pour utiliser, suivre la doc kafka jusqu'à l'étape 3 incluse, puis, lancer le consommateur et le producteur.
+
+Le producteur doit etre utilisé dans le programme faisant les requetes et dans celui lisant le dataset pour envoyer des données en temps réel, le consommateur doit etre utilisé dans le code récupérant les requetes et les traitant.
