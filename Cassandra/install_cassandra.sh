@@ -37,7 +37,7 @@ wget -P ~ ${CASSANDRA_LINK} 2>/dev/null
 tar -xzf ~/${CASSANDRA_TAR}
 
 
-cd ${CASSANDRA_DIRECTORY_NAME}/bin/
+cd ~/${CASSANDRA_DIRECTORY_NAME}/bin/
 
 
 ./cassandra -f > /dev/null 2>&1 &  
