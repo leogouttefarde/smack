@@ -7,7 +7,10 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # Remove Spark, Mesos, Kafka, Zookeeper
 rm -rf spark-2.0.2-bin-hadoop2.7
 
-sudo apt-get -y remove mesos
+# Remove Scala
+sudo apt-get -y remove scala
+
+sudo apt-get -y remove marathon
 
 sudo apt-get -y remove zookeeper
 
@@ -20,8 +23,7 @@ sudo rm -f /etc/init/mesos-*.override /etc/init/zookeeper.override
 sudo rm -rf ~/kafka
 
 
-# Remove Scala
-sudo apt-get -y remove scala
+sudo apt-get -y remove mesos
 
 sudo apt-get -y autoremove
 

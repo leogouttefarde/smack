@@ -26,6 +26,8 @@ sudo apt-get -y update
 
 echo "Installation de mesos sur $SELF"
 sudo apt-get -y install mesos
+# Installe aussi zookeeper
+
 
 echo "Installation de spark sur $SELF"
 wget -P ~ ${SPARK_LINK} 2>/dev/null
@@ -34,6 +36,21 @@ tar -xzf ~/${SPARK_TAR}
 # Not useful anymore, clean it
 rm -f ~/${SPARK_TAR}
 
+
+echo "Installation de Marathon"
+sudo apt-get -y install marathon
+
+echo "Configuration de Marathon"
+sudo mkdir -p /etc/marathon/conf/
+
+sudo bash -c "echo zk://${MASTER}:2181/mesos > /etc/marathon/conf/master"
+sudo bash -c "echo zk://$(slaves_list):2181/marathon > /etc/marathon/conf/zk"
+sudo bash -c "echo ${SELF} > /etc/marathon/conf/hostname"
+
+sudo systemctl restart marathon
+
+
+# Mesos Master
 if [[ ${SELF} = ${MASTER} ]]; then
 
   echo "Serveur maître détecté"
@@ -65,6 +82,13 @@ if [[ ${SELF} = ${MASTER} ]]; then
 
   echo 'Fin du bloc maître'
 
+
+# Mesos Slaves
+else
+
+  # Stop master service
+  sudo systemctl stop mesos-master
+
 fi
 
 
@@ -73,4 +97,6 @@ sudo apt-get -y install scala
 
 
 echo "Installation des dépendances terminée sur $SELF"
+
+
 

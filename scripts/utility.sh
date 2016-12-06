@@ -59,6 +59,14 @@ finish_server_uninstall()
   sudo rm -f $MARKER
 }
 
+slaves_list()
+{
+  local out=$(printf ",%s" ${SLAVES[@]})
+  out="${out:1}"
+
+  echo "${out}"
+}
+
 setup_res()
 {
   cd ~
