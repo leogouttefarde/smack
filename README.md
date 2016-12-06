@@ -37,3 +37,13 @@ Run `~/scripts/run_mesos_cluster.sh`
 The number of kafka brokers is configured through the script argument
 
 Run `~/scripts/run_kafka_cluster.sh <NBR_KAFKA_BROKERS>`
+
+## Cluster stopping scripts
+
+### Stopping mesos cluster
+
+Run `~/scripts/stop_mesos_cluster.sh`
+
+### Stopping Kafka cluster
+
+Run `~/scripts/stop_kafka_cluster.sh`
