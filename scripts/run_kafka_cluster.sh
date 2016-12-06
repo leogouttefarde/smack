@@ -3,6 +3,9 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
+NBR_KAFKA_BROKERS=$1
+
+
 #Lancement du scheduler kafka
 remote_run ${MASTER} "cd ~/kafka && ./kafka-mesos.sh scheduler"
 

@@ -15,9 +15,6 @@ NODES=('server-1' 'server-2' 'server-3' 'server-4')
 SLAVES=${NODES[@]:1}
 MASTER='server-1'
 
-NBR_KAFKA_BROKERS=1
-
-
 
 # Runs a remote command (asynchronous)
 # Usage : remote_run <server> <cmd>

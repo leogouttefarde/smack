@@ -34,6 +34,6 @@ Run `~/scripts/run_mesos_cluster.sh`
 
 ### Launching Kafka cluster
 
-The number of kafka brokers is configured through the variable NBR_KAFKA_BROKERS in utility.sh
+The number of kafka brokers is configured through the script argument
 
 Run `~/scripts/run_kafka_cluster.sh`
