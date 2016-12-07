@@ -39,6 +39,9 @@ tar -xzf ~/${SPARK_TAR}
 rm -f ~/${SPARK_TAR}
 
 
+echo "Installation de Scala sur $SELF"
+sudo apt-get -y install scala
+
 echo "Installation de Marathon"
 sudo apt-get -y install marathon
 
@@ -97,8 +100,6 @@ fi
 ~/scripts/install_cassandra.sh
 
 
-echo "Installation de Scala sur $SELF"
-sudo apt-get -y install scala
 # TODO : installer jdk partout (requis par scala)
 
 echo "Installation des dépendances terminée sur $SELF"
