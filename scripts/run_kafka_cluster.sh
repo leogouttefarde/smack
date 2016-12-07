@@ -3,6 +3,13 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
+CURRENT_KAFKA_INSTANCE_PID=$(sudo lsof -t -i:7000)
+
+if [[ ${CURRENT_KAFKA_INSTANCE_PID} -ne '' ]];then
+    echo 'Kafka cluster already running. Aborting...'
+    exit
+fi
+
 # Nombre par défaut
 NB_KAFKA_BROKERS=1
 
