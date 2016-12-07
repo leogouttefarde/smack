@@ -42,17 +42,17 @@ rm -f ~/${SPARK_TAR}
 echo "Installation de Scala sur $SELF"
 sudo apt-get -y install scala
 
-echo "Installation de Marathon"
-sudo apt-get -y install marathon
+# echo "Installation de Marathon"
+# sudo apt-get -y install marathon
 
-echo "Configuration de Marathon"
-sudo mkdir -p /etc/marathon/conf/
+# echo "Configuration de Marathon"
+# sudo mkdir -p /etc/marathon/conf/
 
-sudo bash -c "echo zk://${MASTER}:2181/mesos > /etc/marathon/conf/master"
-sudo bash -c "echo zk://$(slaves_list):2181/marathon > /etc/marathon/conf/zk"
-sudo bash -c "echo ${SELF} > /etc/marathon/conf/hostname"
+# sudo bash -c "echo zk://${MASTER}:2181/mesos > /etc/marathon/conf/master"
+# sudo bash -c "echo zk://$(slaves_list):2181/marathon > /etc/marathon/conf/zk"
+# sudo bash -c "echo ${SELF} > /etc/marathon/conf/hostname"
 
-sudo systemctl restart marathon
+# sudo systemctl restart marathon
 
 
 # Mesos Master
@@ -68,7 +68,7 @@ if [[ ${SELF} = ${MASTER} ]]; then
   echo 'Installation de Kafka'
 
   #Installation de Kafka (seulement au niveau du master)
-  sudo apt -y install openjdk-8-jdk
+  sudo apt-get -y install openjdk-8-jdk
   git clone https://github.com/mesos/kafka
   cd kafka && ./gradlew jar
   wget -P ~/kafka ${KAFKA_LINK} 2>/dev/null

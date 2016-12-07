@@ -28,7 +28,7 @@ Run `~/scripts/version.sh`
 
 ## Cluster launching scripts
 
-### Launching mesos cluster
+### Launching Mesos cluster
 
 Run `~/scripts/run_mesos_cluster.sh`
 
@@ -38,9 +38,14 @@ The number of kafka brokers is configured through the script argument
 
 Run `~/scripts/run_kafka_cluster.sh <NB_KAFKA_BROKERS>`
 
+### Launching Cassandra cluster
+
+Run `~/scripts/run_cassandra_cluster.sh &`
+
+
 ## Cluster stopping scripts
 
-### Stopping mesos cluster
+### Stopping Mesos cluster
 
 Run `~/scripts/stop_mesos_cluster.sh`
 
