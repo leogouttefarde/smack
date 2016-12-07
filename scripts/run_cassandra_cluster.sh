@@ -5,11 +5,11 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 
 # Lancement du seeder cassandra
-remote_run_sync ${MASTER} "~/apache-cassandra-3.9/bin/cassandra -f > /dev/null"
+remote_run_sync ${MASTER} "~/scripts/run_cassandra.sh"
 
 
 # Lancement des autres
 for slave in ${SLAVES}; do
-  remote_run ${slave} "~/apache-cassandra-3.9/bin/cassandra -f > /dev/null"
+  remote_run ${slave} "~/scripts/run_cassandra.sh"
 done
 
