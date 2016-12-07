@@ -67,6 +67,11 @@ slaves_list()
   echo "${out}"
 }
 
+command_exists()
+{
+  type "$1" &> /dev/null;
+}
+
 setup_res()
 {
   cd ~
@@ -87,7 +92,12 @@ setup_res()
  
     echo "Updating setup on $SERV"
 
-    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; sudo apt -y install unzip ${SILENT}; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
+    FUNC='command_exists() { type "$1" &> /dev/null; }'
+    WGET="wget --no-cache -O ${ZIP} ${RES} ${SILENT}"
+    INSTALL="if ! command_exists unzip ; then sudo apt -y install unzip ${SILENT}; fi"
+    UNZIP="unzip -o ${ZIP} ${SILENT}"
+
+    CMD="${FUNC}; ${WGET}; ${INSTALL}; ${UNZIP}; ~/scripts/version.sh"
     remote_run_sync $SERV "${CMD}"
 
   done
