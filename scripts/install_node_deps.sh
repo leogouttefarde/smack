@@ -39,6 +39,9 @@ tar -xzf ~/${SPARK_TAR}
 rm -f ~/${SPARK_TAR}
 
 
+~/scripts/install_cassandra.sh
+
+
 echo "Installation de Scala sur $SELF"
 sudo apt-get -y install scala
 
@@ -68,7 +71,7 @@ if [[ ${SELF} = ${MASTER} ]]; then
   echo 'Installation de Kafka'
 
   #Installation de Kafka (seulement au niveau du master)
-  sudo apt-get -y install openjdk-8-jdk
+  #sudo apt-get -y install openjdk-8-jdk
   git clone https://github.com/mesos/kafka
   cd kafka && ./gradlew jar
   wget -P ~/kafka ${KAFKA_LINK} 2>/dev/null
@@ -96,11 +99,6 @@ else
 
 fi
 
-
-~/scripts/install_cassandra.sh
-
-
-# TODO : installer jdk partout (requis par scala)
 
 echo "Installation des dépendances terminée sur $SELF"
 
