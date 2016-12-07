@@ -3,6 +3,12 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
+CURRENT_MESOS_INSTANCE_PID=$(sudo lsof -t -i:5050)
+
+if [[ ${CURRENT_MESOS_INSTANCE_PID} -ne '' ]];then
+    echo 'Mesos cluster already running. Aborting...'
+    exit
+fi
 
 echo 'Lancement du master'
 remote_run $MASTER ~/scripts/run_mesos_master.sh
