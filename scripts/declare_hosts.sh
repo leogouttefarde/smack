@@ -14,7 +14,8 @@ backup_hosts()
     return 0
 
   else
-    echo "A backup of $HOSTS already exists, aborting"
+    #echo "A backup of $HOSTS already exists, aborting"
+    echo "Hosts already installed"
   fi
 
   return -1
@@ -28,7 +29,8 @@ restore_hosts()
     return 0
 
   else
-    echo "No backup of $HOSTS to restore, aborting"
+    #echo "No backup of $HOSTS to restore, aborting"
+    echo "Hosts already uninstalled"
   fi
 
   return -1
