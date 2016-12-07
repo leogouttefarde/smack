@@ -17,6 +17,7 @@ sudo tar xzf Python-2.7.12.tgz
 cd Python-2.7.12
 sudo ./configure
 sudo make altinstall
+#sudo make install
 
 
 # Installation de JAVA
