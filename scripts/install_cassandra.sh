@@ -12,12 +12,12 @@ cd ~/
 sudo apt-get -y install build-essential checkinstall
 sudo apt-get -y install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 cd /usr/src
-sudo wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz
+sudo wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz 2>/dev/null
 sudo tar xzf Python-2.7.12.tgz
 cd Python-2.7.12
-sudo ./configure
-sudo make altinstall
-#sudo make install
+sudo ./configure &>/dev/null
+sudo make altinstall &>/dev/null
+#sudo make install &>/dev/null
 
 
 # Installation de JAVA
@@ -41,7 +41,7 @@ CASSANDRA_DIRECTORY_NAME=${CASSANDRA_TAR%\-bin.tar.gz*}
 echo "Installation de cassandra sur $SELF"
 
 
-wget -P ~ ${CASSANDRA_LINK} 2>/dev/null
+wget -P ~ ${CASSANDRA_LINK} 2>/dev/null 2>/dev/null
 tar -xzf ~/${CASSANDRA_TAR}
 
 
