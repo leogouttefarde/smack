@@ -4,7 +4,7 @@
 
 ### First setup
 
-To download and extract the installation files the first time, just run this command :
+To download and extract the installation files for the first time, just run this command :
 
 `ZIP=~/setup.zip; cd ~; wget -O $ZIP https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip; unzip -o $ZIP`
 
