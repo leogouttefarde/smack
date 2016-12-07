@@ -6,7 +6,7 @@
 
 To download and extract the installation files for the first time, just run this command :
 
-`ZIP=~/setup.zip; cd ~; wget -O $ZIP https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip; unzip -o $ZIP`
+`ZIP=~/setup.zip; cd ~; wget -O $ZIP https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip; sudo apt -y install unzip; unzip -o $ZIP`
 
 ### Further updates
 
