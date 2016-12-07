@@ -55,8 +55,8 @@ cd ~
 
 echo "Configuration de Cassandra"
 sed -r -i "s/cluster_name: '([a-zA-Z]| |_)*/cluster_name:'Smack_Cluster'/g" ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
-sed -r -i 's/- seeds: \"([0-9]{1,3}\.){3}[0-9]{1,3}\"/- seeds: ${MASTER}/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
-sed -r -i 's/listen_address: (localhost|([0-9]{1,3}\.){3}[0-9]{1,3})/listen_address: ${SELF}/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
+sed -r -i 's/- seeds: \"([0-9]{1,3}\.){3}[0-9]{1,3}\"/- seeds: '${MASTER}'/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
+sed -r -i 's/listen_address: (localhost|([0-9]{1,3}\.){3}[0-9]{1,3})/listen_address: '${SELF}'/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/rpc_address: (localhost|([0-9]{1,3}\.){3}[0-9]{1,3})/rpc_address: 0.0.0.0/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i '/^# broadcast_rpc_address:/s/^# //' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/endpoint_snitch: [a-zA-Z]*/endpoint_snitch: RackInferringSnitch/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
