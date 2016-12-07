@@ -14,7 +14,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 public class ConsumerTest {
 	void consume() throws IOException {
 		 Properties props = new Properties();
-	     props.put("bootstrap.servers", "localhost:9092");
+	     props.put("bootstrap.servers", "server-2:31000");
 	     props.put("group.id", "test");
 	     props.put("enable.auto.commit", "true");
 	     props.put("auto.commit.interval.ms", "1000");

@@ -9,7 +9,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 public class ProducerTest {
 	void produce() throws IOException {
 		 Properties props = new Properties();
-		 props.put("bootstrap.servers", "localhost:9092");
+		 props.put("bootstrap.servers", "server-2:31000");
 		 props.put("acks", "all");
 		 props.put("retries", 0);
 		 props.put("batch.size", 16384);

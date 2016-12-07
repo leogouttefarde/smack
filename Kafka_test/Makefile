@@ -6,7 +6,8 @@ ZIPDIR=KafkaTest
 all: ${CONSDIR}/bin/TestConsumerMain.class ${CONSDIR}/bin/ConsumerTest.class ${PRODDIR}/bin/TestProducerMain.class ${PRODDIR}/bin/ProducerTest.class
 	cp ${CONSDIR}/bin/* ${ZIPDIR}/
 	cp ${PRODDIR}/bin/* ${ZIPDIR}/
-	zip -r kafka_test.zip KafkaTest/
+	cp kafka-topics.sh ${ZIPDIR}/
+	zip -r kafka_test.zip ${ZIPDIR}/
 
 ${CONSDIR}/bin/TestConsumerMain.class: ${CONSDIR}/src/TestConsumerMain.java ${CONSDIR}/src/ConsumerTest.java
 	javac -cp ${CP} ${CONSDIR}/src/TestConsumerMain.java ${CONSDIR}/src/ConsumerTest.java -d ${CONSDIR}/bin
