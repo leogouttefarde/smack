@@ -1,0 +1,1 @@
+sudo kill $(ps auwx | grep cassandra | awk '{print $2}')
