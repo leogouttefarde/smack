@@ -17,6 +17,7 @@ SELF=$(hostname)
 
 # Install Mesos, Spark, Kafka
 install_deps $SELF
+# TODO : stop using ssh to run install_deps synchronously ..
 
 
 echo manual | sudo tee /etc/init/zookeeper.override > /dev/null

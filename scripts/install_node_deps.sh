@@ -1,3 +1,5 @@
+#! /bin/bash
+
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
@@ -92,9 +94,12 @@ else
 fi
 
 
+~/scripts/install_cassandra.sh
+
+
 echo "Installation de Scala sur $SELF"
 sudo apt-get -y install scala
-
+# TODO : installer jdk partout (requis par scala)
 
 echo "Installation des dépendances terminée sur $SELF"
 
