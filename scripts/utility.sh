@@ -8,7 +8,7 @@ IP_FILE=/etc/my_ip
 HOSTS=/etc/hosts
 HOSTS_BACKUP=$HOSTS.old
 LOCAL_IP=127.0.1.1
-MY_IP=$(cat $IP_FILE)
+MY_IP=$(cat $IP_FILE 2>/dev/null)
 
 # First node is the master
 NODES=('server-1' 'server-2' 'server-3' 'server-4')
@@ -87,7 +87,7 @@ setup_res()
  
     echo "Updating setup on $SERV"
 
-    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; sudo apt -y install unzip; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
+    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; sudo apt -y install unzip ${SILENT}; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
     remote_run_sync $SERV "${CMD}"
 
   done
