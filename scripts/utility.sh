@@ -87,7 +87,7 @@ setup_res()
  
     echo "Updating setup on $SERV"
 
-    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
+    CMD="wget --no-cache -O ${ZIP} ${RES} ${SILENT}; sudo apt -y install unzip; unzip -o ${ZIP} ${SILENT}; ~/scripts/version.sh"
     remote_run_sync $SERV "${CMD}"
 
   done
