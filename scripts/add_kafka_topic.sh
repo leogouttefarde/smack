@@ -12,7 +12,7 @@ read BROKER
 echo 'Enter the name of the topic: '
 read TOPIC_NAME
 
-if [[ ${BROKER} -ne '' && ${TOPIC_NAME} -ne '' ]];then
+if [ ${BROKER} -ne '' ] && [ ${TOPIC_NAME} -ne '' ];then
     remote_run_sync ${MASTER} "cd ~/kafka && ./kafka-mesos.sh topic add $TOPIC_NAME --broker $BROKER"
 
 else
