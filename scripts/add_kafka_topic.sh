@@ -17,5 +17,3 @@ if [[ ${BROKER} != '' ]] && [[ ${TOPIC_NAME} != '' ]];then
 else
     echo 'Invalid input. Aborting ...'
 fi
-
-
