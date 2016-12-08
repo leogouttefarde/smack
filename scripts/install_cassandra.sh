@@ -70,4 +70,5 @@ sed -r -i 's/# memtable_heap_space_in_mb: 2048/memtable_heap_space_in_mb: 128/g'
 sed -r -i 's/# memtable_offheap_space_in_mb: 2048/memtable_offheap_space_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/# native_transport_max_frame_size_in_mb: 256/native_transport_max_frame_size_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/# max_value_size_in_mb: 256/max_value_size_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
+sed -r -i 's/storage_port: 7000/storage_port: 7002/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 
