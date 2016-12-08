@@ -15,9 +15,8 @@ check_installed
 SELF=$(hostname)
 
 
-# Install Mesos, Spark, Kafka
-install_deps $SELF
-# TODO : stop using ssh to run install_deps synchronously ..
+# Install Mesos, Spark, Kafka, Cassandra, ...
+~/scripts/install_node_deps.sh
 
 
 echo manual | sudo tee /etc/init/zookeeper.override > /dev/null

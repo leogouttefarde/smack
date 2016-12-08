@@ -131,9 +131,3 @@ check_installed()
   fi
 }
 
-#Installation des dépendances
-install_deps()
-{
-    remote_run_sync $1 ~/scripts/install_node_deps.sh
-}
-
