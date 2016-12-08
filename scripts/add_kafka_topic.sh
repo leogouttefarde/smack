@@ -4,7 +4,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 echo 'Available brokers'
-remote_run_sync ${MASTER} "cd ~/kafka && ./kafka-mesos.sh broker start list"
+remote_run_sync ${MASTER} "cd ~/kafka && ./kafka-mesos.sh broker list"
 
 echo 'Enter the broker id: '
 read BROKER
