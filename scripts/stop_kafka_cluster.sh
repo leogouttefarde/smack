@@ -7,7 +7,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 echo 'Arret des brokers'
 remote_run_sync ${MASTER} 'curl "http://'${MASTER}':7000/api/broker/stop?broker=*"'
 #Suppression des brokers
-echo 'Suppresssion des brokers'
+echo 'Suppression des brokers'
 remote_run_sync ${MASTER} 'curl "http://'${MASTER}':7000/api/broker/remove?broker=*"'
 
 #Arret du scheduler

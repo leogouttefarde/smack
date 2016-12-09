@@ -5,12 +5,10 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 #Arret des esclaves
 echo 'Arret des esclaves'
-for slave in ${SLAVES}
-  do
-    remote_run ${slave} 'sudo kill $(sudo lsof -t -i:5051)'
-  done
+for slave in ${SLAVES}; do
+  remote_run ${slave} ~/scripts/kill_mesos_local.sh
+done
 
 #Arret du scheduler
 echo 'Arret du master'
-remote_run_sync ${MASTER} 'sudo kill $(sudo lsof -t -i:5050)'
-remote_run_sync ${MASTER} 'sudo service zookeeper stop'
+remote_run ${MASTER} ~/scripts/kill_mesos_local.sh
