@@ -7,7 +7,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # Lancement du seeder cassandra
 remote_run ${MASTER} "~/scripts/run_cassandra_local.sh"
 
-sleep 20
+sleep 10
 
 
 # Lancement des autres
