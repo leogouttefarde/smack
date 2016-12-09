@@ -7,12 +7,10 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # Changement si argument spécifié
 if [[ $# -ge 1 ]]; then
 
-  #Arret des brokers
-  echo 'Arret des brokers'
+  echo "Arret du broker $1"
   remote_run_sync ${MASTER} 'curl "http://'${MASTER}':7000/api/broker/stop?broker='$1'"'
 
-  #Suppression des brokers
-  echo 'Suppression des brokers'
+  echo "Suppression du broker $1"
   remote_run_sync ${MASTER} 'curl "http://'${MASTER}':7000/api/broker/remove?broker='$1'"'
 
 else
