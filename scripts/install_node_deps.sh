@@ -11,7 +11,7 @@ SPARK_LINK='http://d3kbcqa49mib13.cloudfront.net/spark-2.0.2-bin-hadoop2.7.tgz'
 SPARK_TAR="${SPARK_LINK##*/}"
 SPARK_DIRECTORY_NAME=${SPARK_TAR%\.tgz*}
 
-KAFKA_LINK='https://archive.apache.org/dist/kafka/0.8.2.2/kafka_2.10-0.8.2.2.tgz'
+KAFKA_LINK='http://apache.crihan.fr/dist/kafka/0.10.1.0/kafka_2.11-0.10.1.0.tgz'
 
 SELF=$(hostname)
 
