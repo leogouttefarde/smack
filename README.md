@@ -52,3 +52,23 @@ Run `~/scripts/stop_mesos_cluster.sh`
 ### Stopping Kafka cluster
 
 Run `~/scripts/stop_kafka_cluster.sh`
+
+### Stopping Cassandra cluster
+
+Run `~/scripts/stop_cassandra_cluster.sh`
+
+
+## Server killing scripts
+
+### Killing Mesos from a server
+
+Run `~/scripts/kill_mesos_server.sh <server>`
+
+### Killing Cassandra from a server
+
+Run `~/scripts/kill_cassandra_server.sh <server>`
+
+### Killing Kafka from a broker
+
+Run `~/scripts/kill_kafka_broker.sh <brokerNumber>`
+
