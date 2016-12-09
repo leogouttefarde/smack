@@ -7,18 +7,16 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 if [[ $(hostname) = "$MASTER" ]]; then
 
   echo 'Arret du master mesos'
-#  remote_run_sync ${MASTER} 'sudo kill $(sudo lsof -t -i:5050)'
-#  remote_run_sync ${MASTER} 'sudo service zookeeper stop'
 
-  sudo kill $(sudo lsof -t -i:5050)
-  sudo service zookeeper stop
+  sudo kill $(sudo lsof -t -i:5050) &>/dev/null
+  sudo service zookeeper stop &>/dev/null
 
 else
 
   echo "Arret de l'esclave mesos $(hostname)"
 #  remote_run ${slave} 'sudo kill $(sudo lsof -t -i:5051)'
 
-  sudo kill $(sudo lsof -t -i:5051)
+  sudo kill $(sudo lsof -t -i:5051) &>/dev/null
 
 fi
 
