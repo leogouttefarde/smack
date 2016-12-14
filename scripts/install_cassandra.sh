@@ -65,10 +65,13 @@ sed -r -i '/^# broadcast_rpc_address:/s/^# //' ~/${CASSANDRA_DIRECTORY_NAME}/con
 sed -r -i 's/broadcast_rpc_address: (localhost|([0-9]{1,3}\.){3}[0-9]{1,3})/broadcast_rpc_address: '${SELF}'/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/endpoint_snitch: [a-zA-Z]*/endpoint_snitch: RackInferringSnitch/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 
+# Fixes a port conflit with Kafka
+sed -r -i 's/storage_port: 7000/storage_port: 7002/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
+
+# Reduce memory requirements
 sed -r -i 's/# file_cache_size_in_mb: 512/file_cache_size_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
-sed -r -i 's/# memtable_heap_space_in_mb: 2048/memtable_heap_space_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
-sed -r -i 's/# memtable_offheap_space_in_mb: 2048/memtable_offheap_space_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
+sed -r -i 's/# memtable_heap_space_in_mb: 2048/memtable_heap_space_in_mb: 256/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
+sed -r -i 's/# memtable_offheap_space_in_mb: 2048/memtable_offheap_space_in_mb: 256/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/# native_transport_max_frame_size_in_mb: 256/native_transport_max_frame_size_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 sed -r -i 's/# max_value_size_in_mb: 256/max_value_size_in_mb: 128/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
-sed -r -i 's/storage_port: 7000/storage_port: 7002/g' ~/${CASSANDRA_DIRECTORY_NAME}/conf/cassandra.yaml
 
