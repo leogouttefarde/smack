@@ -86,10 +86,8 @@ setup_res()
   curl -s https://github.com/leogouttefarde/smack/raw/master/setup.zip &>/dev/null
 
   # for each node
-  for i in {1..4}; do
+  for SERV in "${NODES[@]}"; do
 
-    SERV=server-$i
- 
     echo "Updating setup on $SERV"
 
     FUNC='command_exists() { type "$1" &> /dev/null; }'

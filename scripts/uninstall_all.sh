@@ -8,9 +8,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 setup_res
 
  # Uninstall each server
-for i in {1..4}; do
-
-  SERV=server-$i
+for SERV in "${NODES[@]}"; do
 
   echo "Uninstalling $SERV"
   remote_run $SERV ~/scripts/server_uninstall.sh

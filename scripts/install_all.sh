@@ -10,9 +10,7 @@ check_installed
 setup_res
 
 # install each server
-for i in {1..4}; do
-
-  SERV=server-$i
+for SERV in "${NODES[@]}"; do
 
   echo "Installing $SERV"
   remote_run $SERV ~/scripts/server_install.sh

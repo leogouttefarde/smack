@@ -6,9 +6,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 
 # reset each server
-for i in {1..4}; do
-
-  SERV=server-$i
+for SERV in "${NODES[@]}"; do
 
   if [[ $(hostname) = "$SERV" ]]; then
     SELF=$SERV

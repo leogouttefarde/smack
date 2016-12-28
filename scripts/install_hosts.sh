@@ -8,9 +8,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 setup_res
 
 # install each server
-for i in {1..4}; do
-
-  SERV=server-$i
+for SERV in "${NODES[@]}"; do
 
   echo "Installing hosts on $SERV"
   remote_run $SERV ~/scripts/declare_hosts.sh
