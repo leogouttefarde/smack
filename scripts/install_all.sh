@@ -4,12 +4,10 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
-# Abort if already installed
-check_installed
 
 setup_res
 
-# install each server
+# Installs any not yet installed server
 for SERV in "${NODES[@]}"; do
 
   echo "Installing $SERV"
