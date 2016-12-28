@@ -11,7 +11,7 @@ LOCAL_IP=127.0.1.1
 MY_IP=$(cat $IP_FILE 2>/dev/null)
 
 # First node is the master
-NODES=('server-1' 'server-2' 'server-3' 'server-4')
+NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6')
 SLAVES=${NODES[@]:1}
 MASTER='server-1'
 

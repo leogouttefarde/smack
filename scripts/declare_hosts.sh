@@ -88,6 +88,8 @@ else
     decl_serv 213.32.72.245 server-2
     decl_serv 213.32.72.62 server-3
     decl_serv 149.202.188.215 server-4
+    decl_serv 149.202.190.228 server-5
+    decl_serv 149.202.190.49 server-6
 
     echo "Hosts installation finished"
   fi
