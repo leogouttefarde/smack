@@ -4,7 +4,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
-if [[ $(hostname) = "$MASTER" ]]; then
+if [ $# -ge 1 ]; then
 
   echo 'Arret du master mesos'
 

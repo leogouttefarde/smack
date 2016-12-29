@@ -8,10 +8,16 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 setup_res
 
 # Installs any not yet installed server
-for SERV in "${NODES[@]}"; do
+for MASTER in "${MASTERS[@]}"; do
 
-  echo "Installing $SERV"
-  remote_run $SERV ~/scripts/server_install.sh
+  echo "Installing $MASTER"
+  remote_run $MASTER "~/scripts/server_install.sh im_a_master"
 
 done
 
+for SLAVE in "${SLAVES[@]}"; do
+
+  echo "Installing $SLAVE"
+  remote_run $SLAVE ~/scripts/server_install.sh
+
+done

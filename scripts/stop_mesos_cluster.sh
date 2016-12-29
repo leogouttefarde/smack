@@ -10,5 +10,7 @@ for slave in ${SLAVES}; do
 done
 
 #Arret du scheduler
-echo 'Arret du master'
-remote_run ${MASTER} ~/scripts/kill_mesos_local.sh
+echo 'Arret des masters'
+for MASTER in ${MASTERS};do
+  remote_run ${MASTER} "~/scripts/kill_mesos_local.sh im_a_master"
+done
