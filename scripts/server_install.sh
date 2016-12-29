@@ -34,7 +34,7 @@ if [ $# -ge 1 ]; then
     for MASTER in "${MASTERS[@]}"; do
 
       MASTER_ID="${MASTER##*-}"
-      printf "\nserver.$SERV_ID="${MASTER}":2888:3888" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
+      printf "\nserver.$MASTER_ID="${MASTER}":2888:3888" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
 
     done
 
