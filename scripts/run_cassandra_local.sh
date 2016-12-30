@@ -13,5 +13,5 @@ export JVM_OPTS="$JVM_OPTS Xss256m -Xms64m -Xmx512m"
 
 echo "Running Cassandra on $SELF"
 
-sudo ~/apache-cassandra-3.9/bin/cassandra -R -p ${PIDF_CASSANDRA} > cassandra.log
+sudo /home/xnet/apache-cassandra-3.9/bin/cassandra -R -p ${PIDF_CASSANDRA} > cassandra.log
 

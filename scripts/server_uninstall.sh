@@ -12,6 +12,11 @@ sudo add-apt-repository -y --remove ppa:webupd8team/java
 sudo apt-get -y remove oracle-java8-installer
 
 
+sudo mv /etc/monit/monitrc{.old,}
+
+
+
+
 # Remove Spark, Mesos, Kafka, Zookeeper
 rm -rf spark-2.0.2-bin-hadoop2.7
 
