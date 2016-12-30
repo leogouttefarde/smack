@@ -51,3 +51,5 @@ sudo apt-get -y autoremove
 
 finish_server_uninstall
 
+echo "Désinstallation du serveur $SELF terminée"
+
