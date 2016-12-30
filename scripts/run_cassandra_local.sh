@@ -12,8 +12,6 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 export JVM_OPTS="$JVM_OPTS Xss256m -Xms64m -Xmx512m"
 
 echo "Running Cassandra on $SELF"
-# echo "PIDF_CASSANDRA = $PIDF_CASSANDRA"
 
-sudo ~/apache-cassandra-3.9/bin/cassandra -f -R > cassandra.log &
-# sudo ~/apache-cassandra-3.9/bin/cassandra -f -R -p ${PIDF_CASSANDRA} > cassandra.log &
+sudo ~/apache-cassandra-3.9/bin/cassandra -R -p ${PIDF_CASSANDRA} > cassandra.log
 
