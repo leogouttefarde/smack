@@ -9,11 +9,14 @@ HOSTS=/etc/hosts
 HOSTS_BACKUP=$HOSTS.old
 LOCAL_IP=127.0.1.1
 MY_IP=$(cat $IP_FILE 2>/dev/null)
+SELF=$(hostname)
 
 # First node is the master
 NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6')
 SLAVES=${NODES[@]:1}
 MASTER='server-1'
+
+PIDF_CASSANDRA=/run/cassandra.pid
 
 
 # Runs a remote command (asynchronous)

@@ -6,5 +6,5 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 export JVM_OPTS="$JVM_OPTS Xss256k -Xms64m -Xmx256m"
 
-sudo ~/apache-cassandra-3.9/bin/cassandra -f -R > cassandra.log &
+sudo ~/apache-cassandra-3.9/bin/cassandra -p $PIDF_CASSANDRA -f -R > cassandra.log &
 

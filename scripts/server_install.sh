@@ -12,9 +12,6 @@ check_installed
 ~/scripts/declare_hosts.sh
 
 
-SELF=$(hostname)
-
-
 # Install Mesos, Spark, Kafka, Cassandra, ...
 ~/scripts/install_node_deps.sh
 

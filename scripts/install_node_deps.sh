@@ -13,7 +13,6 @@ SPARK_DIRECTORY_NAME=${SPARK_TAR%\.tgz*}
 
 KAFKA_LINK='http://apache.crihan.fr/dist/kafka/0.10.1.0/kafka_2.11-0.10.1.0.tgz'
 
-SELF=$(hostname)
 
 echo "Installation clé E56151BF sur $SELF"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
