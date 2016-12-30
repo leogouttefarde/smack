@@ -22,7 +22,7 @@ function join_by { local IFS="$1"; shift; echo "$*"; }
 MASTERS_WITH_ZK_PORT=("${MASTERS[@]/%/:2181}")
 JOINED_MASTERS_WITH_ZK_PORT=$(join_by , ${MASTERS_WITH_ZK_PORT[@]})
 
-PIDF_CASSANDRA=/run/cassandra.pid
+PIDF_CASSANDRA=/home/xnet/apache-cassandra-3.9/logs/cassandra.pid
 
 
 # Runs a remote command (asynchronous)
