@@ -4,7 +4,12 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
-export JVM_OPTS="$JVM_OPTS Xss256k -Xms64m -Xmx256m"
+# Xss = java thread stack size
+# Xms = initial Java heap size
+# Xmx = maximum Java heap size
+
+# export JVM_OPTS="$JVM_OPTS Xss256k -Xms64m -Xmx256m"
+export JVM_OPTS="$JVM_OPTS Xss256m -Xms64m -Xmx512m"
 
 echo "Running Cassandra on $SELF"
 # echo "PIDF_CASSANDRA = $PIDF_CASSANDRA"
