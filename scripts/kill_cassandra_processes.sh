@@ -3,9 +3,10 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
-sudo kill $(cat $PIDF_CASSANDRA)
+sudo kill $(cat $PIDF_CASSANDRA) &>/dev/null
 
-#sudo pkill -f 'java.*cassandra' &>/dev/null
+sudo pkill -f 'java.*cassandra' &>/dev/null
+
 #sudo kill $(ps auwx | grep cassandra | awk '{print $2}') &>/dev/null
 
 # Clean Cassandra data
