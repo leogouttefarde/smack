@@ -11,6 +11,9 @@ check_installed
 # configure hosts
 ~/scripts/declare_hosts.sh
 
+# Install M/Monit
+~/scripts/install_mmonit.sh
+
 
 echo manual | sudo tee /etc/init/zookeeper.override > /dev/null
 
@@ -40,7 +43,9 @@ else
 
 fi
 
-~/scripts/install_mmonit.sh
+
+# Configure M/Monit
+~/scripts/config_mmonit.sh
 
 
 finish_server_install

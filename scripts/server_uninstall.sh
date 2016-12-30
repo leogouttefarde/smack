@@ -18,6 +18,9 @@ sudo service monit stop
 
 sudo apt-get -y remove monit
 
+sudo rm -rf ~/mmonit-3.6.2
+sudo rm -f ~/mmonit.tgz
+
 
 
 # Remove Spark, Mesos, Kafka, Zookeeper
