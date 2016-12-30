@@ -13,8 +13,14 @@ SELF=$(hostname)
 
 # First node is the master
 NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6')
-SLAVES=${NODES[@]:1}
-MASTER='server-1'
+SLAVES=('server-1' 'server-2' 'server-3')
+MASTERS=('server-4' 'server-5' 'server-6')
+
+function join_by { local IFS="$1"; shift; echo "$*"; }
+
+
+MASTERS_WITH_ZK_PORT=("${MASTERS[@]/%/:2181}")
+JOINED_MASTERS_WITH_ZK_PORT=$(join_by , ${MASTERS_WITH_ZK_PORT[@]})
 
 PIDF_CASSANDRA=/run/cassandra.pid
 
@@ -131,4 +137,5 @@ check_installed()
 
   fi
 }
+
 

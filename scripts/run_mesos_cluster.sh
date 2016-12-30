@@ -11,15 +11,19 @@ if [[ ${CURRENT_MESOS_INSTANCE_PID} -ne '' ]];then
 fi
 
 echo 'Lancement du master'
-remote_run $MASTER ~/scripts/run_mesos_master.sh
+
+for MASTER in "${MASTERS[@]}"
+  do
+    remote_run ${MASTER} ~/scripts/run_mesos_master.sh
+  done
 
 sleep 5
 
 
 echo 'Lancement des esclaves'
 
-for slave in ${SLAVES}
+for slave in "${SLAVES[@]}"
   do
-    remote_run ${slave} "~/scripts/run_mesos_slave.sh $MASTER"
+    remote_run ${slave} "~/scripts/run_mesos_slave.sh"
   done
 
