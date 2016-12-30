@@ -11,9 +11,12 @@ sudo apt-get -y remove libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqli
 sudo add-apt-repository -y --remove ppa:webupd8team/java
 sudo apt-get -y remove oracle-java8-installer
 
-
+# restore default monit config
 sudo mv /etc/monit/monitrc{.old,}
 
+sudo service monit stop
+
+sudo apt-get -y remove monit
 
 
 

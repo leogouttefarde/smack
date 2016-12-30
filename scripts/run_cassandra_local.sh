@@ -9,7 +9,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # Xmx = maximum Java heap size
 
 # export JVM_OPTS="$JVM_OPTS Xss256k -Xms64m -Xmx256m"
-export JVM_OPTS="$JVM_OPTS Xss256m -Xms64m -Xmx512m"
+export JVM_OPTS="$JVM_OPTS Xss1024k -Xms64m -Xmx512m"
 
 echo "Running Cassandra on $SELF"
 

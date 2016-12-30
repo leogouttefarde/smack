@@ -40,6 +40,8 @@ else
 
 fi
 
+~/scripts/install_mmonit.sh
+
 
 finish_server_install
 
