@@ -6,22 +6,19 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "Configuration de M/Monit sur "$SELF
 
-~/mmonit-3.6.2/bin/mmonit
-
 
 # Add services to monitor
 sudo chmod go+rw /etc/monitrc
 
 
-SELF=$(hostname)
-
 # Enable mmonit on server
 cat <<EOT >> /etc/monitrc
 set eventqueue basedir /var/monit/ slots 1000
 set mmonit http://monit:monit@$SELF:8080/collector
-set httpd port 2812 and use address $SELF
+set httpd port 2812
+use address $MY_IP
 allow localhost
-allow $SELF
+allow $MY_IP
 allow monit:monit
 
 EOT
@@ -53,5 +50,8 @@ EOT
 # Reload monit configuration
 sudo chmod 600 /etc/monitrc
 sudo monit reload
+
+# Lancement de M/Monit
+~/mmonit-3.6.2/bin/mmonit
 
 

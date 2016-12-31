@@ -4,8 +4,6 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
-SELF=$(hostname)
-
 echo "Installation de python 2.7 sur $SELF"
 
 cd ~/
