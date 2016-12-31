@@ -46,12 +46,13 @@ EOT
 # WARNING : any script loaded here containing ~ will point to /root NOT /home/xnet !!
 
 
-
-# Reload monit configuration
+# Restauration droits fichier
 sudo chmod 600 /etc/monitrc
-sudo monit reload
 
 # Lancement de M/Monit
 ~/mmonit-3.6.2/bin/mmonit
+
+# Reload monit configuration
+sudo monit reload
 
 
