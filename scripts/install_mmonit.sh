@@ -25,8 +25,11 @@ sudo cp -f /etc/monit/monitrc{,.old}
 sudo service monit restart
 
 
+cd ~
+
 wget https://mmonit.com/dist/mmonit-3.6.2-linux-x64.tar.gz -O mmonit.tgz 2>/dev/null
 
 tar -xzf mmonit.tgz
-#rm -f mmonit.tgz
+rm -f mmonit.tgz
+
 
