@@ -16,5 +16,5 @@ sudo apt-get -y remove monit html2text
 
 sudo rm -rf ~/mmonit-3.6.2
 sudo rm -f ~/mmonit.tgz /etc/monitrc
-sudo rm /usr/bin/monit
+sudo rm -f /usr/bin/monit
 

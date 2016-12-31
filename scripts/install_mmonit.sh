@@ -16,7 +16,8 @@ wget https://mmonit.com/monit/dist/binary/$MONITVER/monit-$MONITVER-linux-x64.ta
 tar -xf monit-*.tar.gz
 rm -f monit-*.tar.gz
 cd monit-*
-sudo cp bin/monit /usr/bin/monit
+sudo rm -f /usr/bin/monit
+sudo cp -f bin/monit /usr/bin/monit
 sudo ln -s /etc/monit/monitrc /etc/monitrc
 sudo cp -f /etc/monit/monitrc{,.old}
 
