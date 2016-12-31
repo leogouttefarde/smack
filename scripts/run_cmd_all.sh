@@ -8,7 +8,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # Display help on missing argument
 if [[ $# -ge 1 ]]; then
 
-  run_cmd_all $1
+  run_cmd_all "$1"
 
 else
 

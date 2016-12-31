@@ -7,6 +7,10 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 echo "Configuration de M/Monit sur "$SELF
 
 
+# Lancement de M/Monit
+~/mmonit-3.6.2/bin/mmonit
+
+
 # Add services to monitor
 sudo chmod go+rw /etc/monitrc
 
@@ -48,9 +52,6 @@ EOT
 
 # Restauration droits fichier
 sudo chmod 600 /etc/monitrc
-
-# Lancement de M/Monit
-~/mmonit-3.6.2/bin/mmonit
 
 # Reload monit configuration
 sudo monit reload
