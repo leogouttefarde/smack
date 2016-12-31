@@ -3,11 +3,10 @@
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
-DEAD=0
-
-
 # If Cassandra node currently down, replace it
-if ~/apache-cassandra-3.9/bin/nodetool status | grep .246 | grep DN; then
+if ~/apache-cassandra-3.9/bin/nodetool status | grep $MY_IP | grep UN; then
+  DEAD=0
+else
   DEAD=1
   CENV=~/apache-cassandra-3.9/conf/cassandra-env.sh
 
