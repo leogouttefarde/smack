@@ -8,7 +8,7 @@ echo "Configuration de M/Monit sur "$SELF
 
 
 # Lancement de M/Monit
-~/mmonit-3.6.2/bin/mmonit
+#~/mmonit-3.6.2/bin/mmonit
 
 
 # Add services to monitor
