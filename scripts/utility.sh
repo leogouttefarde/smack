@@ -68,6 +68,14 @@ finish_server_uninstall()
   sudo rm -f $MARKER
 }
 
+host2ip()
+{
+  if [[ $# -ge 1 ]]; then
+    IP=$(getent hosts $1 | cut -d' ' -f1)
+    echo $IP
+  fi
+}
+
 slaves_list()
 {
   local out=$(printf ",%s" ${SLAVES[@]})

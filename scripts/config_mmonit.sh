@@ -18,11 +18,21 @@ sudo chmod go+rw /etc/monitrc
 # Enable mmonit on server
 cat <<EOT >> /etc/monitrc
 set eventqueue basedir /var/monit/ slots 1000
-set mmonit http://monit:monit@$SELF:8080/collector
+set mmonit http://monit:monit@$(host2ip server-1):8080/collector
+set mmonit http://monit:monit@$(host2ip server-2):8080/collector
+set mmonit http://monit:monit@$(host2ip server-3):8080/collector
+set mmonit http://monit:monit@$(host2ip server-4):8080/collector
+set mmonit http://monit:monit@$(host2ip server-5):8080/collector
+set mmonit http://monit:monit@$(host2ip server-6):8080/collector
 set httpd port 2812
 use address $MY_IP
 allow localhost
-allow $MY_IP
+allow $(host2ip server-1)
+allow $(host2ip server-2)
+allow $(host2ip server-3)
+allow $(host2ip server-4)
+allow $(host2ip server-5)
+allow $(host2ip server-6)
 allow monit:monit
 
 EOT
