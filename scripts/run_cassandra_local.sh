@@ -6,12 +6,18 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "Running Cassandra on $SELF"
 
+DEAD=0
 
-DEAD=1
-CENV=$XNET/apache-cassandra-3.9/conf/cassandra-env.sh
+# TODO : il faudrait ne mettre DEAD à 1 que quand on remplace un noeud qui est down, mais comment le savoir ?
+# En effet quand le noeud est down nodetool n'est plus actif donc il faudrait demander à des noeuds fonctionnels
+# Pour le moment on va passer en mode remplacement uniquement si un argument est fourni.
+if [[ $# -ge 1 ]]; then
+  DEAD=1
+  CENV=$XNET/apache-cassandra-3.9/conf/cassandra-env.sh
 
-cp -f $CENV $CENV.old
-echo 'JVM_OPTS="$JVM_OPTS -Dcassandra.replace_address='$MY_IP'"' >> $CENV
+  cp -f $CENV $CENV.old
+  echo 'JVM_OPTS="$JVM_OPTS -Dcassandra.replace_address='$MY_IP'"' >> $CENV
+fi
 
 
 

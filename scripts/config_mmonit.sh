@@ -50,7 +50,7 @@ EOT
 # Monitor Cassandra
 cat <<EOT >> /etc/monitrc
  check process cassandra with pidfile $PIDF_CASSANDRA
-     start program = "$XNET/scripts/run_cassandra_local.sh"
+     start program = "$XNET/scripts/run_cassandra_local.sh replace"
      stop program  = "$XNET/scripts/kill_cassandra_processes.sh"
 EOT
 
