@@ -1,4 +1,5 @@
 
+XNET=/home/xnet
 RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
 SSH_OPTS="-q -oStrictHostKeyChecking=no -i ~/.ssh/xnet"
 SILENT="&>/dev/null"
@@ -22,7 +23,7 @@ function join_by { local IFS="$1"; shift; echo "$*"; }
 MASTERS_WITH_ZK_PORT=("${MASTERS[@]/%/:2181}")
 JOINED_MASTERS_WITH_ZK_PORT=$(join_by , ${MASTERS_WITH_ZK_PORT[@]})
 
-PIDF_CASSANDRA=/home/xnet/apache-cassandra-3.9/cassandra.pid
+PIDF_CASSANDRA=$XNET/apache-cassandra-3.9/cassandra.pid
 
 
 # Runs a remote command (asynchronous)

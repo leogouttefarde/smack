@@ -40,9 +40,9 @@ EOT
 
 # Monitor M/Monit using Monit
 cat <<EOT >> /etc/monitrc
- check process mmonit with pidfile /home/xnet/mmonit-3.6.2/logs/mmonit.pid
-   start program = "/home/xnet/mmonit-3.6.2/bin/mmonit" 
-   stop program = "/home/xnet/mmonit-3.6.2/bin/mmonit stop"
+ check process mmonit with pidfile $XNET/mmonit-3.6.2/logs/mmonit.pid
+   start program = "$XNET/mmonit-3.6.2/bin/mmonit" 
+   stop program = "$XNET/mmonit-3.6.2/bin/mmonit stop"
 EOT
 
 
@@ -50,14 +50,14 @@ EOT
 # Monitor Cassandra
 cat <<EOT >> /etc/monitrc
  check process cassandra with pidfile $PIDF_CASSANDRA
-     start program = "/home/xnet/scripts/run_cassandra_local.sh"
-     stop program  = "/home/xnet/scripts/kill_cassandra_processes.sh"
+     start program = "$XNET/scripts/run_cassandra_local.sh"
+     stop program  = "$XNET/scripts/kill_cassandra_processes.sh"
 EOT
 
 
 
 # TODO : Add other services here
-# WARNING : any script loaded here containing ~ will point to /root NOT /home/xnet !!
+# WARNING : any script loaded here containing ~ will point to /root NOT $XNET !!
 
 
 # Restauration droits fichier
