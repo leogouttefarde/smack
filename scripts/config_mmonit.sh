@@ -41,7 +41,7 @@ EOT
 # Monitor M/Monit using Monit
 cat <<EOT >> /etc/monitrc
  check process mmonit with pidfile $XNET/mmonit-3.6.2/logs/mmonit.pid
-   start program = "$XNET/mmonit-3.6.2/bin/mmonit" 
+   start program = "$XNET/mmonit-3.6.2/bin/mmonit -p $XNET/mmonit-3.6.2/logs" 
    stop program = "$XNET/mmonit-3.6.2/bin/mmonit stop"
 EOT
 
