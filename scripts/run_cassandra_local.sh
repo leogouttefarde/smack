@@ -28,6 +28,7 @@ fi
 # export JVM_OPTS="$JVM_OPTS Xss256k -Xms64m -Xmx256m"
 export JVM_OPTS="$JVM_OPTS -Xss1024k -Xms64m -Xmx512m"
 
+sudo rm $XNET/cassandra.log
 sudo $XNET/apache-cassandra-3.9/bin/cassandra -R -p ${PIDF_CASSANDRA} > $XNET/cassandra.log
 
 
