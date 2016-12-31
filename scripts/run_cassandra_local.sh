@@ -8,7 +8,7 @@ echo "Running Cassandra on $SELF"
 
 
 DEAD=1
-CENV=~/apache-cassandra-3.9/conf/cassandra-env.sh
+CENV=$XNET/apache-cassandra-3.9/conf/cassandra-env.sh
 
 cp -f $CENV $CENV.old
 echo 'JVM_OPTS="$JVM_OPTS -Dcassandra.replace_address='$MY_IP'"' >> $CENV
@@ -28,7 +28,7 @@ sudo $XNET/apache-cassandra-3.9/bin/cassandra -R -p ${PIDF_CASSANDRA} > $XNET/ca
 # If Cassandra node currently down, finish repairing
 if [ "$DEAD" -eq "1" ]; then
 
-  ~/apache-cassandra-3.9/bin/nodetool repair
+  $XNET/apache-cassandra-3.9/bin/nodetool repair
   mv -f $CENV.old $CENV
 
 fi
