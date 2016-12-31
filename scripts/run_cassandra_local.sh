@@ -22,7 +22,7 @@ if [[ $# -ge 2 ]]; then
 fi
 
 if [ $DEAD -eq 1 ]; then
-  DEAD=1
+
   CENV=$XNET/apache-cassandra-3.9/conf/cassandra-env.sh
 
   cp -f $CENV $CENV.old
