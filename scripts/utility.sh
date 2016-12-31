@@ -76,6 +76,21 @@ slaves_list()
   echo "${out}"
 }
 
+run_cmd_all()
+{
+  if [[ $# -ge 1 ]]; then
+
+    # for each node
+    for SERV in "${NODES[@]}"; do
+
+      echo "Running command on $SERV"
+      remote_run $SERV "$1"
+
+    done
+
+  fi
+}
+
 command_exists()
 {
   type "$1" &> /dev/null;
