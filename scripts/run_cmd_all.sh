@@ -1,11 +1,11 @@
 #! /bin/bash
-# Updates the setup files everywhere
+# Runs commands on all servers
 
 DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
-# Changement si argument spécifié
+# Display help on missing argument
 if [[ $# -ge 1 ]]; then
 
   run_cmd_all $1
