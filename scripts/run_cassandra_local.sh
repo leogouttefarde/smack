@@ -13,6 +13,16 @@ DEAD=0
 # Pour le moment on va passer en mode remplacement uniquement si un argument est fourni.
 if [[ $# -ge 1 ]]; then
   DEAD=1
+fi
+
+if [[ $# -ge 2 ]]; then
+  if (( RANDOM % 2 )); then
+    DEAD=1;
+  fi
+fi
+
+if [ "$DEAD" -eq "1" ]; then
+  DEAD=1
   CENV=$XNET/apache-cassandra-3.9/conf/cassandra-env.sh
 
   cp -f $CENV $CENV.old
