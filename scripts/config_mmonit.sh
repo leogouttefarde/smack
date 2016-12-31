@@ -20,9 +20,9 @@ After = network.target
 
 [Service]
 Type=simple
-ExecStart = /opt/mmonit/bin/mmonit -i
-ExecStop = /opt/mmonit/bin/mmonit stop
-PIDFile = /opt/mmonit/logs/mmonit.pid
+ExecStart = $XNET/mmonit-3.6.2/bin/mmonit -i
+ExecStop = $XNET/mmonit-3.6.2/bin/mmonit stop
+PIDFile = $XNET/mmonit-3.6.2/logs/mmonit.pid
 Restart = on-abnormal
 
 [Install]
