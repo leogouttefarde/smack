@@ -6,9 +6,34 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "Configuration de M/Monit sur "$SELF
 
-
-# Lancement de M/Monit
+# Now using systemd
 #~/mmonit-3.6.2/bin/mmonit
+
+# Auto startup using systemd
+sudo rm -f /etc/systemd/system/mmonit.service
+sudo touch /etc/systemd/system/mmonit.service
+sudo chmod 666 /etc/systemd/system/mmonit.service
+cat <<EOT > /etc/systemd/system/mmonit.service
+[Unit]
+Description = Easy, proactive monitoring of Unix systems, network and cloud services
+After = network.target
+
+[Service]
+Type=simple
+ExecStart = /opt/mmonit/bin/mmonit -i
+ExecStop = /opt/mmonit/bin/mmonit stop
+PIDFile = /opt/mmonit/logs/mmonit.pid
+Restart = on-abnormal
+
+[Install]
+WantedBy = multi-user.target
+EOT
+sudo chmod 644 /etc/systemd/system/mmonit.service
+
+# Reload systemd configuration, enable M/Monit on boot and start it
+sudo systemctl daemon-reload
+sudo systemctl enable mmonit
+sudo systemctl start mmonit
 
 
 # Add services to monitor
@@ -38,12 +63,14 @@ allow monit:monit
 EOT
 
 
-# Monitor M/Monit using Monit
-cat <<EOT >> /etc/monitrc
- check process mmonit with pidfile $XNET/mmonit-3.6.2/logs/mmonit.pid
-   start program = "$XNET/mmonit-3.6.2/bin/mmonit -p $XNET/mmonit-3.6.2/logs" 
-   stop program = "$XNET/mmonit-3.6.2/bin/mmonit stop"
-EOT
+# Now using systemd
+# # Auto startup using Monit
+# # Monitor M/Monit using Monit
+# cat <<EOT >> /etc/monitrc
+#  check process mmonit with pidfile $XNET/mmonit-3.6.2/logs/mmonit.pid
+#    start program = "$XNET/mmonit-3.6.2/bin/mmonit -p $XNET/mmonit-3.6.2/logs" 
+#    stop program = "$XNET/mmonit-3.6.2/bin/mmonit stop"
+# EOT
 
 
 
