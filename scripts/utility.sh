@@ -118,17 +118,18 @@ setup_res()
   curl -s https://github.com/leogouttefarde/smack/blob/master/setup.zip?raw=true &>/dev/null
   curl -s https://github.com/leogouttefarde/smack/raw/master/setup.zip &>/dev/null
 
+  FUNC='command_exists() { type "$1" &> /dev/null; }'
+  WGET="wget --no-cache -O ${ZIP} ${RES} ${SILENT}"
+  INSTALL="if ! command_exists unzip ; then sudo apt -y install unzip ${SILENT}; fi"
+  UNZIP="unzip -o ${ZIP} ${SILENT}"
+
+  CMD="${FUNC}; ${WGET}; ${INSTALL}; ${UNZIP}; ~/scripts/version.sh"
+
   # for each node
   for SERV in "${NODES[@]}"; do
 
     echo "Updating setup on $SERV"
 
-    FUNC='command_exists() { type "$1" &> /dev/null; }'
-    WGET="wget --no-cache -O ${ZIP} ${RES} ${SILENT}"
-    INSTALL="if ! command_exists unzip ; then sudo apt -y install unzip ${SILENT}; fi"
-    UNZIP="unzip -o ${ZIP} ${SILENT}"
-
-    CMD="${FUNC}; ${WGET}; ${INSTALL}; ${UNZIP}; ~/scripts/version.sh"
     remote_run_sync $SERV "${CMD}"
 
   done
