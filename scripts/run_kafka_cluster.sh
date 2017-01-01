@@ -27,5 +27,5 @@ sleep 5
 
 # Lancement des brokers
 echo 'Lancement des brokers'
-cd ~/kafka && ./kafka-mesos.sh broker add 1..$NB_KAFKA_BROKERS --cpus 0.5 --mem 256 --heap 256  > /dev/null 2>&1
+cd ~/kafka && ./kafka-mesos.sh broker add 1..$NB_KAFKA_BROKERS --cpus 1 --mem 512 --heap 512  > /dev/null 2>&1
 cd ~/kafka && ./kafka-mesos.sh broker start 1..$NB_KAFKA_BROKERS  > /dev/null 2>&1
