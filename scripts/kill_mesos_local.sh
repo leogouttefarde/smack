@@ -13,7 +13,7 @@ if [ $# -ge 1 ]; then
 
 else
 
-  echo "Arret de l'esclave mesos $(hostname)"
+  echo "Arret de l'esclave mesos $SELF"
 #  remote_run ${slave} 'sudo kill $(sudo lsof -t -i:5051)'
 
   sudo kill $(sudo lsof -t -i:5051) &>/dev/null

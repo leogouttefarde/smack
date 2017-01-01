@@ -61,7 +61,7 @@ decl_serv()
     local NUM="${HOST##*-}"
     local NODE=node$NUM
 
-    if [[ $(hostname) = "$HOST" ]]; then
+    if [[ $SELF = "$HOST" ]]; then
       create_my_ip_file $IP
       #IP="$LOCAL_IP"
     fi

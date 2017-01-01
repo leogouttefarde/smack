@@ -15,5 +15,5 @@ sudo pkill -f 'java.*cassandra' &>/dev/null
 sudo rm -rf $XNET/apache-cassandra-3.9/data/* &>/dev/null
 
 
-echo "Cassandra killed on $(hostname)"
+echo "Cassandra killed on $SELF"
 

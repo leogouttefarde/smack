@@ -8,9 +8,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # reset each server
 for SERV in "${NODES[@]}"; do
 
-  if [[ $(hostname) = "$SERV" ]]; then
-    SELF=$SERV
-  else
+  if [[ $SELF != "$SERV" ]]; then
     echo "Uninstalling hosts on $SERV"
     remote_run $SERV "~/scripts/declare_hosts.sh undo"
   fi

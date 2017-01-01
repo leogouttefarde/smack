@@ -84,13 +84,17 @@ EOT
 
 
 # TODO : Add other services here
-# WARNING : any script loaded here containing ~ will point to /root NOT $XNET !!
+# WARNING : any script loaded here containing ~ will point to /root NOT /home/xnet !!
 
+# Use monit for mesos except on the manager
+if [[ $SELF != "$MANAGER" ]]; then
 cat <<EOT >> /etc/monitrc
  check process mesos with pidfile $PIDF_MESOS
      start program = "$XNET/scripts/run_mesos_local.sh"
      stop program  = "$XNET/scripts/kill_mesos_processes.sh"
 EOT
+fi
+
 
 # Restauration droits fichier
 sudo chmod 600 /etc/monitrc

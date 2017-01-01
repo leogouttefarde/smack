@@ -13,10 +13,14 @@ DEAD=0
 # si non on doit démarrer normalement
 for SERV in "${NODES[@]}"; do
 
+  if [[ $SELF != "$SERV" ]]; then
+
     if remote_run_sync $SERV "~/scripts/cassandra_status.sh | grep $MY_IP" 2>/dev/null; then
       DEAD=1;
       break;
     fi
+
+  fi
 
 done
 
