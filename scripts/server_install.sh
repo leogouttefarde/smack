@@ -27,6 +27,12 @@ if [ $# -ge 1 ]; then
   MY_ID="${SELF##*-}"
   echo manual | sudo tee /etc/init/mesos-slave.override > /dev/null
   echo $MY_ID | sudo tee /etc/zookeeper/conf/myid > /dev/null
+  printf "\nmaxClientCnxns=50" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
+  printf "\ntickTime=2000" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
+  printf "\ninitLimit=10" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
+  printf "\nsyncLimit=5" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
+  printf "\ndataDir=/var/lib/zookeeper" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
+  printf "\nclientPort=2181" | sudo tee --append /etc/zookeeper/conf/zoo.cfg > /dev/null
 
     for MASTER in "${MASTERS[@]}"; do
 

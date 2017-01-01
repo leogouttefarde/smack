@@ -14,17 +14,30 @@ SELF=$(hostname)
 
 # First node is the master
 NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6')
-SLAVES=('server-1' 'server-2' 'server-3')
+SLAVES=('server-2' 'server-3')
 MASTERS=('server-4' 'server-5' 'server-6')
+MANAGER='server-1'
 
 function join_by { local IFS="$1"; shift; echo "$*"; }
 
+array_contains () {
+    local array="$1[@]"
+    local seeking=$2
+    local in=1
+    for element in "${!array}"; do
+        if [[ $element == $seeking ]]; then
+            in=0
+            break
+        fi
+    done
+    return $in
+}
 
 MASTERS_WITH_ZK_PORT=("${MASTERS[@]/%/:2181}")
 JOINED_MASTERS_WITH_ZK_PORT=$(join_by , ${MASTERS_WITH_ZK_PORT[@]})
 
 PIDF_CASSANDRA=$XNET/apache-cassandra-3.9/cassandra.pid
-
+PIDF_MESOS=$XNET/mesos.pid
 
 # Runs a remote command (asynchronous)
 # Usage : remote_run <server> <cmd>
