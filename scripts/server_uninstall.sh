@@ -4,6 +4,13 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 . "$DIR"/utility.sh
 
 
+~/scripts/uninstall_mmonit.sh
+
+~/scripts/stop_cassandra_cluster.sh
+~/scripts/stop_kafka_cluster.sh
+~/scripts/stop_mesos_cluster.sh
+
+
 # Remove Cassandra
 sudo apt-get -y remove build-essential checkinstall
 sudo apt-get -y remove libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
@@ -11,8 +18,7 @@ sudo apt-get -y remove libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqli
 sudo add-apt-repository -y --remove ppa:webupd8team/java
 sudo apt-get -y remove oracle-java8-installer
 
-
-~/scripts/uninstall_mmonit.sh
+sudo rm -rf ~/apache-cassandra-3.9 /usr/src/Python-2.7.12*
 
 
 # Remove Spark, Mesos, Kafka, Zookeeper
