@@ -21,7 +21,7 @@ fi
 
 # Lancement du scheduler kafka
 echo 'Lancement du scheduler kafka'
-cd ~/kafka && ./kafka-mesos.sh scheduler > /dev/null 2>&1
+cd ~/kafka && ./kafka-mesos.sh scheduler > /dev/null 2>&1 &
 
 sleep 5
 
