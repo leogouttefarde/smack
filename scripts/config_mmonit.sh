@@ -95,6 +95,15 @@ cat <<EOT >> /etc/monitrc
 EOT
 fi
 
+# Use monit for kafka scheduler
+if [[ $SELF = "$MANAGER" ]]; then
+cat <<EOT >> /etc/monitrc
+ check process kafka-scheduler with pidfile $PIDF_KAFKA_SCHEDULER
+     start program = "$XNET/scripts/run_kafka_cluster.sh"
+     stop program  = "$XNET/scripts/stop_kafka_cluster.sh"
+EOT
+fi
+
 
 # Restauration droits fichier
 sudo chmod 600 /etc/monitrc

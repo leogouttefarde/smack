@@ -38,6 +38,7 @@ JOINED_MASTERS_WITH_ZK_PORT=$(join_by , ${MASTERS_WITH_ZK_PORT[@]})
 
 PIDF_CASSANDRA=$XNET/apache-cassandra-3.9/cassandra.pid
 PIDF_MESOS=$XNET/mesos.pid
+PIDF_KAFKA_SCHEDULER=$XNET/kafka_scheduler.pid
 
 # Runs a remote command (asynchronous)
 # Usage : remote_run <server> <cmd>
