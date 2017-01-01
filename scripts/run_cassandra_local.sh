@@ -41,9 +41,9 @@ if [ $DEAD -eq 1 ]; then
   CENV=$XNET/apache-cassandra-3.9/conf/cassandra-env.sh
 
   cp -f $CENV $CENV.old
-  chmod $CENV 666
+  chmod 666 $CENV
   echo 'JVM_OPTS="$JVM_OPTS -Dcassandra.replace_address='$MY_IP'"' >> $CENV
-  chmod $CENV 644
+  chmod 644 $CENV
 
 else
 
