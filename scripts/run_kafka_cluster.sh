@@ -21,7 +21,7 @@ fi
 
 # Lancement du scheduler kafka
 echo 'Lancement du scheduler kafka'
-$XNET/kafka/kafka-mesos.sh scheduler > /dev/null 2>&1 &
+cd $XNET/kafka && ./kafka-mesos.sh scheduler > /dev/null 2>&1 &
 
 sleep 5
 
@@ -29,5 +29,5 @@ sudo lsof -t -i:7000 | sudo tee $PIDF_KAFKA_SCHEDULER
 
 # Lancement des brokers
 echo 'Lancement des brokers'
-$XNET/kafka/kafka-mesos.sh broker add 1..$NB_KAFKA_BROKERS --cpus 1 --mem 512 --heap 512  > /dev/null 2>&1
-$XNET/kafka/kafka-mesos.sh broker start 1..$NB_KAFKA_BROKERS  > /dev/null 2>&1
+cd $XNET/kafka && ./kafka-mesos.sh broker add 1..$NB_KAFKA_BROKERS --cpus 1 --mem 512 --heap 512  > /dev/null 2>&1
+cd $XNET/kafka && ./kafka-mesos.sh broker start 1..$NB_KAFKA_BROKERS  > /dev/null 2>&1
