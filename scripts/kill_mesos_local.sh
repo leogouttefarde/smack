@@ -19,4 +19,3 @@ else
   sudo kill $(sudo lsof -t -i:5051) &>/dev/null
 
 fi
-
