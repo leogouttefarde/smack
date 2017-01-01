@@ -83,7 +83,7 @@ if [ $# -ge 1 ]; then
   echo 'Configuration de Kafka'
 
   printf '\nuser=xnet'| sudo tee ~/kafka/kafka-mesos.properties
-  printf "\nzk=//$JOINED_MASTERS_WITH_ZK_PORT"| sudo tee --append ~/kafka/kafka-mesos.properties
+  printf "\nzk=$JOINED_MASTERS_WITH_ZK_PORT"| sudo tee --append ~/kafka/kafka-mesos.properties
   printf '\nstorage=zk:/mesos-kafka-scheduler'| sudo tee --append ~/kafka/kafka-mesos.properties
   printf "\nmaster=zk://$JOINED_MASTERS_WITH_ZK_PORT/mesos"| sudo tee --append ~/kafka/kafka-mesos.properties
   printf '\napi=http://'${SELF}':7000'| sudo tee --append ~/kafka/kafka-mesos.properties
