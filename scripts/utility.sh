@@ -14,8 +14,9 @@ SELF=$(hostname)
 
 # First node is the master
 NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6')
-SLAVES=('server-1' 'server-2' 'server-3')
+SLAVES=('server-2' 'server-3')
 MASTERS=('server-4' 'server-5' 'server-6')
+MANAGER='server-1'
 
 function join_by { local IFS="$1"; shift; echo "$*"; }
 

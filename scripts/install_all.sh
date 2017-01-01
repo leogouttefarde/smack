@@ -8,6 +8,10 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 setup_res
 
 # Installs any not yet installed server
+
+echo "Installing $MANAGER"
+remote_run $MANAGER "~/scripts/server_install.sh im_a_manager"
+
 for MASTER in "${MASTERS[@]}"; do
 
   echo "Installing $MASTER"
