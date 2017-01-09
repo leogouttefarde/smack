@@ -7,7 +7,7 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 # Kill the Cassandra process
 sudo kill $(cat $PIDF_CASSANDRA 2>/dev/null) &>/dev/null
 
-# Look for Cassandra process and kills it (if any left)
+# Look for Cassandra process and kill it (if any left)
 sudo pkill -f 'java.*cassandra' &>/dev/null
 
 
