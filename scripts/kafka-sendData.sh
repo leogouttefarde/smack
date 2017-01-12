@@ -7,6 +7,10 @@
 
 sudo apt-get install kafkacat
 
+##### import the name of the topic and the broker
+
+source kafka-retrieveData.sh
+
 ##### Get all the dataset files
 
 if [[ "$1" != "" ]];
