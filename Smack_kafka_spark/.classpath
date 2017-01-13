@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="/home/edoh/Downloads/spark-2.1.0-bin-hadoop2.7/jars/spark-sql_2.11-2.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/edoh/Downloads/spark-2.1.0-bin-hadoop2.7/jars/spark-core_2.11-2.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/edoh/Downloads/spark-streaming-kafka_2.10-1.6.3.jar"/>
+	<classpathentry kind="lib" path="/home/edoh/Downloads/kafka_2.11-0.10.1.0/kafka_2.11-0.10.1.0/kafka_2.11-0.10.1.0/libs/kafka-clients-0.10.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/edoh/Downloads/spark-2.1.0-bin-hadoop2.7/jars/spark-streaming_2.11-2.1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
