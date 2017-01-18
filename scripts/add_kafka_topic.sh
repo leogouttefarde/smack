@@ -16,8 +16,11 @@ read TOPIC_NAME
 
 export TOPIC_NAME
 
+echo 'Enter the number of replicas: '
+read REPLICAS
+
 if [[ ${BROKER} != '' ]] && [[ ${TOPIC_NAME} != '' ]];then
-    cd ~/kafka && ./kafka-mesos.sh topic add $TOPIC_NAME --broker $BROKER
+    cd ~/kafka && ./kafka-mesos.sh topic add $TOPIC_NAME --broker $BROKER --replicas $REPLICAS
 else
     echo 'Invalid input. Aborting ...'
 fi
