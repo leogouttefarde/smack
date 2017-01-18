@@ -1,3 +1,5 @@
-run my file
-un problème de configuration
-j'ai du mal avec ce langage
+run, my, file
+un, problème, de ,configuration
+un, langage
+nouvelle configuration
+Cinquième ligne
