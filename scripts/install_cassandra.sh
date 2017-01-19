@@ -29,7 +29,7 @@ sudo apt-get update
 echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 sudo apt-get -y install oracle-java8-installer
-sudo apt install -y oracle-java8-set-default
+sudo apt-get install -y oracle-java8-set-default
 
 # Installation de CASSANDRA
 

@@ -17,14 +17,18 @@ tar -xf monit-*.tar.gz
 rm -f monit-*.tar.gz
 cd monit-*
 sudo rm -f /usr/bin/monit
-sudo cp -f bin/monit /usr/bin/moni
+sudo cp -f bin/monit /usr/bin/monit
 sudo ln -s /etc/monit/monitrc /etc/monitrc
 sudo cp -f /etc/monit/monitrc{,.old}
+
 sudo service monit restart
+
+
 cd ~
+
 wget https://mmonit.com/dist/mmonit-3.6.2-linux-x64.tar.gz -O mmonit.tgz 2>/dev/null
+
 tar -xzf mmonit.tgz
 rm -f mmonit.tgz
-
 
 
