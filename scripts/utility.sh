@@ -13,8 +13,8 @@ MY_IP=$(cat $IP_FILE 2>/dev/null)
 SELF=$(hostname)
 
 # First node is the master
-NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6')
-SLAVES=('server-2' 'server-3')
+NODES=('server-1' 'server-2' 'server-3' 'server-4' 'server-5' 'server-6' 'server-7')
+SLAVES=('server-2' 'server-3' 'server-7')
 MASTERS=('server-4' 'server-5' 'server-6')
 MANAGER='server-1'
 

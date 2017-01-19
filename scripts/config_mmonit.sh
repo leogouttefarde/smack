@@ -49,6 +49,8 @@ set mmonit http://monit:monit@$(host2ip server-3):8080/collector
 set mmonit http://monit:monit@$(host2ip server-4):8080/collector
 set mmonit http://monit:monit@$(host2ip server-5):8080/collector
 set mmonit http://monit:monit@$(host2ip server-6):8080/collector
+set mmonit http://monit:monit@$(host2ip server-7):8080/collector
+
 set httpd port 2812
 use address $MY_IP
 allow localhost
@@ -58,6 +60,8 @@ allow $(host2ip server-3)
 allow $(host2ip server-4)
 allow $(host2ip server-5)
 allow $(host2ip server-6)
+allow $(host2ip server-7)
+
 allow monit:monit
 
 EOT

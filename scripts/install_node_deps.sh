@@ -64,7 +64,7 @@ if [ $# -ge 1 ]; then
   echo "Serveur maître/manager détecté"
   SPARK_MASTER_DECL="spark.master mesos://zk://"${JOINED_MASTERS_WITH_ZK_PORT}"/mesos"
   echo ${SPARK_MASTER_DECL} | sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
-  printf '\nspark.executor.memory 512m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
+  printf '\nspark.executor.memory 1024m'| sudo tee --append ~/${SPARK_DIRECTORY_NAME}/conf/spark-defaults.conf
   echo 'export MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so'| sudo tee ~/${SPARK_DIRECTORY_NAME}/conf/spark-env.sh
 
 
