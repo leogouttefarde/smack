@@ -15,7 +15,7 @@ for SERV in "${NODES[@]}"; do
 
   if [[ $SELF != "$SERV" ]]; then
 
-    if remote_run_sync $SERV "~/scripts/cassandra_status.sh | grep $MY_IP" 2>/dev/null; then
+    if remote_run_sync $SERV "$XNET/scripts/cassandra_status.sh | grep $MY_IP" 2>/dev/null; then
       DEAD=1;
       break;
     fi
@@ -58,7 +58,7 @@ sudo $XNET/apache-cassandra-3.9/bin/cassandra -R -p ${PIDF_CASSANDRA} > $XNET/ca
 # If Cassandra node currently down, finish repairing
 if [ $DEAD -eq 1 ]; then
 
-  sleep 4
+  sleep 12
 
   $XNET/apache-cassandra-3.9/bin/nodetool repair
   mv -f $CENV.old $CENV
