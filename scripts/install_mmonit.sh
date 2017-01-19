@@ -1,16 +1,35 @@
-#!/usr/bin/env bash
+# mmonit installation & configuration script
 
-sudo apt-get install monit
+DIR=$(cd "$(dirname "$0")" && pwd)
+. "$DIR"/utility.sh
 
-wget https://mmonit.com/dist/mmonit-3.6.2-linux-x64.tar.gz
 
-tar -xf mmonit-3.6.2-linux-x64.tar.gz
+echo "Installation de M/Monit sur "$SELF
 
+# Install monit 5.2 (minimal requirement)
+sudo service monit stop
+sudo apt-get install monit html2text -y
+
+#MONITVER=$(wget -q https://mmonit.com/monit/dist/binary/ -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}')
+MONITVER=5.20.0
+cd /tmp
+wget https://mmonit.com/monit/dist/binary/$MONITVER/monit-$MONITVER-linux-x64.tar.gz 2>/dev/null
+tar -xf monit-*.tar.gz
+rm -f monit-*.tar.gz
+cd monit-*
+sudo rm -f /usr/bin/monit
+sudo cp -f bin/monit /usr/bin/monit
 sudo ln -s /etc/monit/monitrc /etc/monitrc
-sudo cp -f /etc/monit/monitrc /etc/monit/monitrc.old
+sudo cp -f /etc/monit/monitrc{,.old}
 
-rm mmonit-3.6.2-linux-x64.tar.gz
+sudo service monit restart
 
-sudo monit
 
-sudo ./mmonit-3.6.2/bin/mmonit
+cd ~
+
+wget https://mmonit.com/dist/mmonit-3.6.2-linux-x64.tar.gz -O mmonit.tgz 2>/dev/null
+
+tar -xzf mmonit.tgz
+rm -f mmonit.tgz
+
+
