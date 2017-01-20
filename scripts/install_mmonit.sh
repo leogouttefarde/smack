@@ -20,6 +20,7 @@ cd monit-$MONITVER
 sudo rm -f /usr/bin/monit
 sudo cp -f bin/monit /usr/bin/monit
 sudo ln -s /etc/monit/monitrc /etc/monitrc
+sudo chmod 600 /etc/monitrc
 sudo cp -f /etc/monit/monitrc{,.old}
 
 sudo service monit restart
