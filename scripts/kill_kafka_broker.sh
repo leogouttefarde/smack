@@ -8,8 +8,8 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 if [[ $# -ge 1 ]]; then
 
 echo "Arret et suppression des brokers $1"
-curl "http://localhost:7000/api/broker/stop?broker='$1'" &>/dev/null
-curl "http://localhost:7000/api/broker/remove?broker='$1'" &>/dev/null
+curl "http://localhost:7000/api/broker/stop?broker="$1 &>/dev/null
+curl "http://localhost:7000/api/broker/remove?broker="$1 &>/dev/null
 
 else
 
