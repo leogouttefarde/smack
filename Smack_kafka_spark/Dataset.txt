@@ -1,5 +1,0 @@
-run, my, file
-un, problème, de ,configuration
-un, langage
-nouvelle configuration
-Cinquième ligne
