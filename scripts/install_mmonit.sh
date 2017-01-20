@@ -6,23 +6,29 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "Installation de M/Monit sur "$SELF
 
-# Install monit 5.2 (minimal requirement)
+# Force stop monit
 sudo service monit stop
+sudo monit -c /etc/monitrc quit
+
+# Install monit 5.2 (minimal requirement)
 sudo apt-get install monit html2text -y
 
 #MONITVER=$(wget -q https://mmonit.com/monit/dist/binary/ -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}')
 MONITVER=5.20.0
 cd /tmp
-wget https://mmonit.com/monit/dist/binary/$MONITVER/monit-$MONITVER-linux-x64.tar.gz 2>/dev/null
-tar -xf monit-*.tar.gz
-rm -f monit-*.tar.gz
-cd monit-*
+sudo wget https://mmonit.com/monit/dist/binary/$MONITVER/monit-$MONITVER-linux-x64.tar.gz -O monit.tgz 2>/dev/null
+sudo tar -xf monit.tgz
+sudo rm -f monit.tgz
+cd monit-$MONITVER
 sudo rm -f /usr/bin/monit
 sudo cp -f bin/monit /usr/bin/monit
 sudo ln -s /etc/monit/monitrc /etc/monitrc
+sudo chmod 600 /etc/monitrc
 sudo cp -f /etc/monit/monitrc{,.old}
 
+# Force start monit
 sudo service monit restart
+sudo monit
 
 
 cd ~
