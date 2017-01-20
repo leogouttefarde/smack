@@ -1,7 +1,7 @@
 
 XNET=/home/xnet
 RES=https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip
-SSH_OPTS="-q -oStrictHostKeyChecking=no -i ~/.ssh/xnet"
+SSH_OPTS="-q -oStrictHostKeyChecking=no -i $XNET/.ssh/xnet"
 SILENT="&>/dev/null"
 MARKER=/etc/smack_installed
 
