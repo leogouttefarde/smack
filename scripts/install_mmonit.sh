@@ -13,10 +13,10 @@ sudo apt-get install monit html2text -y
 #MONITVER=$(wget -q https://mmonit.com/monit/dist/binary/ -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}')
 MONITVER=5.20.0
 cd /tmp
-wget https://mmonit.com/monit/dist/binary/$MONITVER/monit-$MONITVER-linux-x64.tar.gz 2>/dev/null
-tar -xf monit-*.tar.gz
-rm -f monit-*.tar.gz
-cd monit-*
+sudo wget https://mmonit.com/monit/dist/binary/$MONITVER/monit-$MONITVER-linux-x64.tar.gz -O monit.tgz 2>/dev/null
+sudo tar -xf monit.tgz
+sudo rm -f monit.tgz
+cd monit-$MONITVER
 sudo rm -f /usr/bin/monit
 sudo cp -f bin/monit /usr/bin/monit
 sudo ln -s /etc/monit/monitrc /etc/monitrc
