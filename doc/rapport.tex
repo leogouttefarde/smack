@@ -4,7 +4,7 @@
 \usepackage{fancybox}
 \usepackage[francais]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{fancyhdr}
 \usepackage{stackrel}
@@ -20,6 +20,7 @@
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{wrapfig}
+\usepackage[T1]{fontenc}
 %\setlength{\parindent}{0pt}
 \setlength{\parskip}{1ex}
 \setlength{\textwidth}{17cm}
@@ -94,7 +95,7 @@ Il est écrit en Scala et s'exécute sur la machine virtuelle Java (JVM). Les la
 \subsubsection* {L'écosystème de Spark}
 
 \begin{center}
-\includegraphics[scale=0.5]{res/eco\_spark.png}
+\includegraphics[scale=0.5]{res/eco_spark.png}
 \end{center}
 
 
@@ -117,7 +118,7 @@ Il est écrit en Scala et s'exécute sur la machine virtuelle Java (JVM). Les la
 \subsubsection* {L'architecture de Spark}
 
 \begin{center}
-\includegraphics[scale=0.5]{res/archi\_spark.png}
+\includegraphics[scale=0.5]{res/archi_spark.png}
 \end{center}
 
 
@@ -185,7 +186,7 @@ Les tâches sont exécutées sur les workers qui ensuite retournent les résulta
 
 
 \begin{center}
-\includegraphics[scale=0.5]{res/workflow\_spark.png}
+\includegraphics[scale=0.5]{res/workflow_spark.png}
 \end{center}
 
 \newpage
@@ -280,7 +281,7 @@ Cassandra fourni un schéma de données dynamique afin d'offrir un maximum de fl
 \subsubsection* {Architecture}
 
 \begin{wrapfigure}{r}{-2.5cm}
-\includegraphics[scale=0.4]{res/archi\_cass.png}
+\includegraphics[scale=0.4]{res/archi_cass.png}
 \end{wrapfigure}
 
 Cassandra aborde le problème de défaillance (failure) en employant un système distribué peer-to-peer où tous les nœuds sont identiques et les données sont réparties entre tous les nœuds du cluster.
@@ -314,7 +315,7 @@ Les composants de Cassandra sont les suivants :
 \subsubsection* {Du point de vue de l'application Client}
 
 \begin{wrapfigure}{r}{-2.5cm}
-\includegraphics[scale=0.5]{res/cli\_cass.png}
+\includegraphics[scale=0.5]{res/cli_cass.png}
 \end{wrapfigure}
 
 Tous les nœuds de Cassandra sont égaux. Ainsi, une demande de lecture ou d'écriture peut interroger indifféremment n'importe quel nœud du cluster. Quand un client se connecte à un nœud et demande une opération d'écriture ou de lecture, le nœud courant sert de coordinateur du point de vue du client. Le travail du coordinateur est de se comporter comme un proxy entre le client de l'application et les nœuds qui possèdent la données. C'est lui qui a en charge de déterminer quels nœuds de l'anneau devront recevoir la requête.
@@ -345,7 +346,7 @@ Tous les nœuds de Cassandra sont égaux. Ainsi, une demande de lecture ou d'éc
 \subsubsection* {Modèle de données}
 
 \begin{wrapfigure}{r}{-2.5cm}
-\includegraphics[scale=0.6]{res/model\_cass.png}
+\includegraphics[scale=0.6]{res/model_cass.png}
 \end{wrapfigure}
 
 \noindent Apache Cassandra stocke les données dans une suite triée de couples \textbf{clé / valeur}. On classifie ainsi Cassandra comme une base de données NoSQL orientée colonne.
@@ -364,7 +365,7 @@ Un \textbf{Keyspace} est un regroupement de famille de colonnes
 \end{itemize}
 
 \begin{center}
-\includegraphics[scale=0.6]{res/model2\_cass.png}
+\includegraphics[scale=0.6]{res/model2_cass.png}
 \end{center}
 
 
@@ -386,7 +387,7 @@ Apache Cassandra utilise l'architecture client/serveur. La connexion entre le cl
 Pour faire la connexion entre Cassandra et la stack SMACK, et plus précisément avec Spark, nous avons besoin du \textbf{« Spark-Cassandra Connector »}. Ce client est spécial car il est destiné spécifiquement pour Spark, et pas pour un langage spécifié.
 
 \begin{center}
-\includegraphics[scale=0.7]{res/spark\_cass.png}
+\includegraphics[scale=0.7]{res/spark_cass.png}
 \end{center}
 
 \newpage
@@ -400,7 +401,7 @@ Kafka est une plateforme de streaming distribuée pouvant être utilisée comme 
 Le modèle de fonctionnement de Kafka à haut niveau est simple, les producteurs envoient des messages (de n'importe quel type) à l'un des topic du cluster de Kafka et les consommateurs souscrivent à un ou plusieurs topics :
 
 \begin{center}
-\includegraphics[scale=0.8]{res/producer\_consumer.png}
+\includegraphics[scale=0.8]{res/producer_consumer.png}
 \end{center}
 
 Un topic est en fait un log de tous les messages qui ont étés envoyés par les producteurs. Un topic se décompose en plusieurs partitions afin d'offrir un passage à l'échelle, il n'est donc pas nécessaire qu'une machine soit capable de contenir un topic en entier sur son disque.
@@ -409,7 +410,7 @@ Un topic est en fait un log de tous les messages qui ont étés envoyés par les
 La figure suivante montre un topic composé de 2 partitions :
 
 \begin{center}
-\includegraphics[scale=0.8]{res/topic\_kafka.png}
+\includegraphics[scale=0.8]{res/topic_kafka.png}
 \end{center}
 
 Le producteur écrit chaque message à la suite de l'un des deux topics tandis que le consommateur lit les messages à l'offset qu'il désire (généralement le dernier offset lu + 1).
@@ -587,10 +588,6 @@ Pour prendre on compte la nouvelle configuration de Monit, on effectue aussi un 
 
 
 \subsubsection {Architecture SPOF-less}
-
-TODO
-
-
 
 \end{document}
 
