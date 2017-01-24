@@ -119,108 +119,8 @@ Pour mettre à jour les scripts, il suffit de lancer le script \lstinline!~/scri
 
 
 
-
-
-\section {Gestion du cycle de vie}
-
-\subsection {Démarrage}
-
-\subsubsection*{run\_cassandra\_cluster.sh}
-Permet de lancer les processus Cassandra sur tous les noeuds du cluster en appellant \lstinline!run_cassandra_local.sh! sur chaque noeud.
-Le script inverse est \lstinline!stop_cassandra_cluster.sh! .
-
-\subsubsection*{run\_cassandra\_local.sh}
-Permet de lancer les processus Cassandra sur un hôte, il détecte aussi l'état du noeud Cassandra pour décider de la manière du lancement (start normal ou remplacement).
-Le script inverse est \lstinline!kill_mesos_processes.sh! .
-
-\subsubsection*{run\_kafka\_cluster.sh}
-Permet de lancer le scheduler kafka et de démarrer les brokers. Le nombre de ceux-ci est passé en argument.
-Le script inverse est \lstinline!stop_kafka_cluster.sh! .
-
-\subsubsection*{run\_mesos\_cluster.sh}
-Permet de démarrer le cluster mesos sur tous les maîtres et esclaves du cluster.
-Le script inverse est \lstinline!stop_mesos_cluster.sh! .
-
-\subsubsection*{run\_mesos\_local.sh}
-Permet de démarrer les daemons mesos. La commande de démarrage est différente selon le type de l'hôte.
-Le script inverse est \lstinline!kill_mesos_processes.sh! .
-
-
-
-\subsection {Arrêt}
-
-\subsubsection*{stop\_cassandra\_cluster.sh}
-Arrête le cluster Cassandra.
-
-
-\subsubsection*{stop\_kafka\_cluster.sh}
-Arrête le cluster Kafka.
-
-
-\subsubsection*{stop\_mesos\_cluster.sh}
-Arrête le cluster Mesos.
-
-
-\subsubsection*{kill\_cassandra\_processes.sh}
-
-Tue les processus Cassandra localement.
-
-
-\subsubsection*{kill\_cassandra\_server.sh}
-
-Tue les processus Cassandra sur le serveur fourni en paramètre.
-
-
-\subsubsection*{kill\_mesos\_server.sh}
-
-Tue les processus Mesos sur le serveur fourni en paramètre.
-
-
-\subsubsection*{kill\_mesos\_processes.sh}
-
-Tue les processus Mesos localement.
-
-
-\subsubsection*{kill\_kafka\_broker.sh}
-
-Tue le brokers Kafka de numéro fourni en paramètre.
-
-
-
-\subsection {Utilitaires}
-
-\subsubsection*{cassandra\_status.sh}
-
-Affiche l'état du cluster Cassandra.
-
-
-\subsubsection*{install\_hosts.sh}
-Permet de configurer le fichier \lstinline!/etc/hosts! sur toutes les machines en appellant le script \lstinline!declare_hosts.sh! sur chacune de celles-ci.
-Le script inverse est \lstinline!uninstall_hosts.sh! .
-
-
-\subsubsection*{update\_setup.sh}
-
-Met à jour les différents scripts sur tous les noeuds du cluster.
-
-
-\subsubsection*{declare\_hosts.sh}
-
-Permet de configurer, ou de rétablir l'ancienne configuration des hôtes en cas de désinstallation.
-
-
-\subsubsection*{version.sh}
-
-Affiche le hash MD5 de l'archive actuellement installée.
-
-
-\subsubsection*{run\_cmd\_all.sh}
-
-Lance la commande fourni en paramètre sur tous les noeuds.
-
-
-
 \section {Supervision du cluster}
+\subsection{M/Monit}
 
 L'interface M/Monit permet de superviser l'état du cluster depuis le port 8080 de chaque machine, qui fournit une interface web dédiée.
 
@@ -230,8 +130,40 @@ Si c'est le cas, le service est automatiquement redémarré sous 2 minutes maxim
 Il est également possible de forcer le démarrage d'un service, l'arrêter, le redémarrer ou lancer un monitoring de service manuellement au lieu d'attendre.
 
 Aussi, il possible d'effectuer différentes statistiques sur le cluster et de consulter le journal des événements.
-
-
+\subsection{Mesos}
+Mesos fournit lui aussi une interface web pratique pour la supervision de l'état du cluster mesos, accessible depuis le port 5050 par défaut de chacun des masters.
+\begin{figure}[H]
+    \centering
+    \centerline{\includegraphics[scale=0.23]{res/mesos.png}}
+    \caption{Web UI d'accueil de Mesos}
+\end{figure}
+Comme on peut le voir, l'interface fournit des informations utiles sur l'utilisation des ressources des différents agents du cluster. Elle donne également une vue globale sur les différentes taches en cours déployées sur le cluster. \\Lorsqu'on clique sur le bouton "Frameworks" au niveau de la barre de navigation, on obtient une interface contenant plus de détails sur les frameworks déployés sur les noeuds.
+\begin{figure}[H]
+    \centering
+    \centerline{\includegraphics[scale=0.23]{res/fra.png}}
+    \caption{Vue détaillées sur les frameworks en cours}
+\end{figure}
+Dans cet exemple-ci, un job spark est lancé. On peut cliquer sur le lien du framework pour obtenir des détails les éxecuteurs de ses jobs.
+\begin{figure}[H]
+    \centering
+    \centerline{\includegraphics[scale=0.23]{res/tasks.png}}
+    \caption{Vue détaillées sur les taches d'un framework}
+\end{figure}
+Quand on clique sur l'url du WEB UI visible sur la barre gauche de la page, on accède à l'interface web de spark valable pour toute la durée du job.
+\newpage
+\subsection{Spark}
+L'interface d'accueil donne une vue générale sur tous les jobs en cours et leurs états d'avancement.
+\begin{figure}[H]
+    \centering
+    \centerline{\includegraphics[scale=0.23]{res/sphome.png}}
+    \caption{Vue générale sur les différents jobs Spark}
+\end{figure}
+On peut choisir de voir encore plus de détail sur les étapes internes du job. On a également accès au DAG du job, qui en est une représentation en graphe direct acyclique.
+\begin{figure}[H]
+    \centering
+    \centerline{\includegraphics[scale=0.23]{res/jobdetails.png}}
+    \caption{Vue détaillée sur un job Spark}
+\end{figure}
 \newpage
 
 \section {Application de démonstration}
@@ -260,8 +192,8 @@ Le consommateur Kafka est un programme écrit en Scala et exécuté avec Spark. 
 
 Pour ceci, on met le programme dans un dossier main qui lui même est contenu dans un dossier src, ensuite, à la racine du projet, on crée un fichier SBT qui contient toutes les dépendances dont on aura besoin lors de la compilation du programme (dépendances de Kafka, Cassandra, etc.) avec leurs versions spécifiées. La commande "sbt package" permet alors de générer ce jar, qui sera exécuté ensuite avec spark-submit (le connecteur de Cassandra est spécifié après --packages, et les jars externes après --jars et séparés par des virgules).
 
-Chaque 40ms, le consommateur "consulte" le broker Kafka pour voir s'il y'a des lignes à "consommer" (un offset l'aide à savoir où il en est). Les lignes du fichier des données sont ensuite converties en dataframes et insérées dans la base de données Cassandra (qui a été créée au début).
- 
+Chaque 40ms, le consommateur "consulte" le broker Kafka pour voir s'il y'a des lignes à "consommer" (un offset l'aide à savoir où il en est). Les lignes du fichier des données sont ensuite converties en dataframes et insérées dans la base de données Cassandra (qui était crée tout au début).
+
 
 \subsection {Le traitement des données}
 
@@ -298,7 +230,7 @@ Remarques :
 Les brokers de Kafka doivent être indiqués dans les deux premiers programmes (pour l'écriture et la lecture).
 
 \item
-Dans Cassandra, on a 2 datacenters avec une stratégie de réplication “Network Topology Strategy” et  un degré de 3
+On a 2 datacenters avec un degré de réplication de 3.
  
 \end{itemize}
 
