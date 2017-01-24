@@ -4,7 +4,7 @@
 \usepackage{fancybox}
 \usepackage[francais]{babel}
 \usepackage[utf8]{inputenc}
-% \usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{fancyhdr}
 \usepackage{stackrel}
@@ -20,7 +20,6 @@
 \usepackage{tikz}
 \usepackage{float}
 \usepackage{wrapfig}
-
 %\setlength{\parindent}{0pt}
 \setlength{\parskip}{1ex}
 \setlength{\textwidth}{17cm}
@@ -86,7 +85,7 @@
 
 \subsection {Spark}
 
-Apache Spark est un framework open source de traitements Big Data, construit pour effectuer des analyses sophistiquées et conçu pour la facilité d'utilisation et la rapidité. 
+Apache Spark est un framework open source de traitements Big Data, construit pour effectuer des analyses sophistiquées et conçu pour la facilité d'utilisation et la rapidité.
 Spark permet une parallélisation massive avec une technologie in-memory. Les applications sur clusters Hadoop sont exécutées jusqu'à 100 fois plus vite en mémoire, 10 fois plus vite sur disque.
 
 Il est écrit en Scala et s'exécute sur la machine virtuelle Java (JVM). Les langages supportés actuellement pour le développement d'applications sont : Scala, Java, Python, Clojure, R. Spark est complet et unifié pour répondre aux besoins de traitements de données (texte, graphe, etc.) en batch ou en flux temps-réel.
@@ -95,7 +94,7 @@ Il est écrit en Scala et s'exécute sur la machine virtuelle Java (JVM). Les la
 \subsubsection* {L'écosystème de Spark}
 
 \begin{center}
-\includegraphics[scale=0.5]{res/eco_spark.png}
+\includegraphics[scale=0.5]{res/eco\_spark.png}
 \end{center}
 
 
@@ -118,7 +117,7 @@ Il est écrit en Scala et s'exécute sur la machine virtuelle Java (JVM). Les la
 \subsubsection* {L'architecture de Spark}
 
 \begin{center}
-\includegraphics[scale=0.5]{res/archi_spark.png}
+\includegraphics[scale=0.5]{res/archi\_spark.png}
 \end{center}
 
 
@@ -146,7 +145,7 @@ Spark peut être déployé comme un serveur autonome ou sur un framework de trai
 \subsubsection* {Les RDDs}
 
 
-Le concept clé de Spark est les RDDS. Un RDD (Resilient Distributed Dataset) est une abstraction de collection partitionnée d'enregistrements pouvant être distribuée entre machines de manière tolérante aux pannes. 
+Le concept clé de Spark est les RDDS. Un RDD (Resilient Distributed Dataset) est une abstraction de collection partitionnée d'enregistrements pouvant être distribuée entre machines de manière tolérante aux pannes.
 
 
 Les RDD supportent deux types d'opérations:
@@ -186,7 +185,7 @@ Les tâches sont exécutées sur les workers qui ensuite retournent les résulta
 
 
 \begin{center}
-\includegraphics[scale=0.5]{res/workflow_spark.png}
+\includegraphics[scale=0.5]{res/workflow\_spark.png}
 \end{center}
 
 \newpage
@@ -281,7 +280,7 @@ Cassandra fourni un schéma de données dynamique afin d'offrir un maximum de fl
 \subsubsection* {Architecture}
 
 \begin{wrapfigure}{r}{-2.5cm}
-\includegraphics[scale=0.4]{res/archi_cass.png}
+\includegraphics[scale=0.4]{res/archi\_cass.png}
 \end{wrapfigure}
 
 Cassandra aborde le problème de défaillance (failure) en employant un système distribué peer-to-peer où tous les nœuds sont identiques et les données sont réparties entre tous les nœuds du cluster.
@@ -315,7 +314,7 @@ Les composants de Cassandra sont les suivants :
 \subsubsection* {Du point de vue de l'application Client}
 
 \begin{wrapfigure}{r}{-2.5cm}
-\includegraphics[scale=0.5]{res/cli_cass.png}
+\includegraphics[scale=0.5]{res/cli\_cass.png}
 \end{wrapfigure}
 
 Tous les nœuds de Cassandra sont égaux. Ainsi, une demande de lecture ou d'écriture peut interroger indifféremment n'importe quel nœud du cluster. Quand un client se connecte à un nœud et demande une opération d'écriture ou de lecture, le nœud courant sert de coordinateur du point de vue du client. Le travail du coordinateur est de se comporter comme un proxy entre le client de l'application et les nœuds qui possèdent la données. C'est lui qui a en charge de déterminer quels nœuds de l'anneau devront recevoir la requête.
@@ -346,7 +345,7 @@ Tous les nœuds de Cassandra sont égaux. Ainsi, une demande de lecture ou d'éc
 \subsubsection* {Modèle de données}
 
 \begin{wrapfigure}{r}{-2.5cm}
-\includegraphics[scale=0.6]{res/model_cass.png}
+\includegraphics[scale=0.6]{res/model\_cass.png}
 \end{wrapfigure}
 
 \noindent Apache Cassandra stocke les données dans une suite triée de couples \textbf{clé / valeur}. On classifie ainsi Cassandra comme une base de données NoSQL orientée colonne.
@@ -365,7 +364,7 @@ Un \textbf{Keyspace} est un regroupement de famille de colonnes
 \end{itemize}
 
 \begin{center}
-\includegraphics[scale=0.6]{res/model2_cass.png}
+\includegraphics[scale=0.6]{res/model2\_cass.png}
 \end{center}
 
 
@@ -387,7 +386,7 @@ Apache Cassandra utilise l'architecture client/serveur. La connexion entre le cl
 Pour faire la connexion entre Cassandra et la stack SMACK, et plus précisément avec Spark, nous avons besoin du \textbf{« Spark-Cassandra Connector »}. Ce client est spécial car il est destiné spécifiquement pour Spark, et pas pour un langage spécifié.
 
 \begin{center}
-\includegraphics[scale=0.7]{res/spark_cass.png}
+\includegraphics[scale=0.7]{res/spark\_cass.png}
 \end{center}
 
 \newpage
@@ -401,16 +400,16 @@ Kafka est une plateforme de streaming distribuée pouvant être utilisée comme 
 Le modèle de fonctionnement de Kafka à haut niveau est simple, les producteurs envoient des messages (de n'importe quel type) à l'un des topic du cluster de Kafka et les consommateurs souscrivent à un ou plusieurs topics :
 
 \begin{center}
-\includegraphics[scale=0.8]{res/producer_consumer.png}
+\includegraphics[scale=0.8]{res/producer\_consumer.png}
 \end{center}
 
-Un topic est en fait un log de tous les messages qui ont étés envoyés par les producteurs. Un topic se décompose en plusieurs partitions afin d'offrir un passage à l'échelle, il n'est donc pas nécessaire qu'une machine soit capable de contenir un topic en entier sur son disque. 
+Un topic est en fait un log de tous les messages qui ont étés envoyés par les producteurs. Un topic se décompose en plusieurs partitions afin d'offrir un passage à l'échelle, il n'est donc pas nécessaire qu'une machine soit capable de contenir un topic en entier sur son disque.
 
 
 La figure suivante montre un topic composé de 2 partitions :
 
 \begin{center}
-\includegraphics[scale=0.8]{res/topic_kafka.png}
+\includegraphics[scale=0.8]{res/topic\_kafka.png}
 \end{center}
 
 Le producteur écrit chaque message à la suite de l'un des deux topics tandis que le consommateur lit les messages à l'offset qu'il désire (généralement le dernier offset lu + 1).
@@ -447,7 +446,7 @@ Un consommateur voit les messages dans l'ordre dans lequel ils sont enregistrés
 
 % \begin{center}
 % % \begin{figure}[ht!]
-%     \includegraphics[scale=0.55]{res/sujet_makefiles_premier_Makefile-small_nth4.pdf}
+%     \includegraphics[scale=0.55]{res/sujet\_makefiles\_premier\_Makefile-small\_nth4.pdf}
 % % \caption{Diagramme des cas d'utilisation}
 % % \end{figure}
 % \end{center}
@@ -505,6 +504,58 @@ Les différents scripts sont prévus pour être exécutés directement depuis l'
 L'ensemble des scripts utilisés sont installés et mis à jour via le téléchargement et l'extraction d'un fichier ZIP dédié disponible en ligne. Cela permet de simplifier le processus d'installation.
 
 
+\subsection {Fonctionnement / organisation des scripts}
+
+\subsection{Scripts d'installation/configuration}
+
+\paragraph{update\_setup.sh}
+
+Met à jour les différents scripts au niveau de toutes les machines
+
+\paragraph{install\_all.sh}
+Permet le lancement de l'installation dans toutes les machines en appellant le script server\_install.sh dans chacune de celles-ci. Le script est appellé de manière différente selon l'hôte en question (master ou slave). Le script inverse est: unistall\_all.sh
+
+
+\paragraph{server\_install.sh}
+Permet de lancer l'installation sur une machine.
+Premièrement, le script vérifie si l'installation n'est pas encore faite avant d'installer et de configurer les hôtes, mmonit et les autres dépendances. L'installation est bien évidemment différente selon le type de l'hôte, ce contrôle est fait à l'aide d'un argument passé au script. Le script inverse est: server\_uninstall.sh
+
+\paragraph{install\_hosts.sh}
+Permet de configurer le fichier /etc/hosts dans toutes les machines en appellant le script declare\_hosts.sh dans chacune de celles-ci. Le script inverse est: uninstall\_hosts.sh
+
+
+\paragraph{declare\_hosts.sh}
+Permet de configurer, ou de rétablir l'ancienne configuration des hôtes en cas de désinstallation.
+
+\paragraph{install\_node\_deps.sh:}
+Permet d'installer les dépendances des différents frameworks et de les configurer selon le type de la machine (Master, esclave ou manager).
+
+\paragraph{config\_mmonit.sh}
+Permet de configurer les processus et hotes monitorés par monit.
+
+\paragraph{install\_cassandra.sh}
+Permet l'installation et la configuration de cassandra dans une machine. L’installation est identique dans toutes les machines (peer to peer).
+
+
+\subsection{Démarrage / arrêt des composants de la stack et automatisation}
+\paragraph{run\_cassandra\_cluster.sh}
+Permet de lancer les processus cassandra dans tous les noeuds du cluster en appellant le run\_cassandra\_local.sh dans chacun de ceux-ci. \\Le script inverse est stop\_cassandra\_cluster.sh
+
+\paragraph{run\_cassandra\_local.sh}
+Permet de lancer les processus cassandra dans un hôte, il détecte aussi l’état du noeud cassandra pour décider de la manière du lancement (start normal ou remplacement). Le escript inverse est : kill\_mesos\_processes.sh
+
+\paragraph{run\_kafka\_cluster.sh}
+Permet de lancer le scheduler kafka et de démarrer les brokers. Le nombre de ceux-ci est passé en argument. Le script inverse est stop\_kafka\_cluster.sh
+
+\paragraph{run\_mesos\_cluster.sh}
+Permet de démarrer le cluster mesos sur tous les maîtres et esclaves du cluster.Le script inverse est stop\_mesos\_cluster.sh
+
+\paragraph{run\_mesos\_local.sh}
+Permet de démarrer les daemons mesos. La commande de démarrage est différente selon le type du hôte.Le script inverse est kill\_mesos\_processes.sh
+
+\paragraph{add\_kafka\_topic.sh}
+Permet d’ajouter un topic en interactif  selon les besoins de l’application à déployer sur le cluster.
+
 
 
 \subsection {Tolérance aux fautes}
@@ -525,7 +576,7 @@ Vient alors l'installation de M/Monit, pour cela on télécharge simplement l'ar
 
 \subsubsection {Configuration}
 
-Le travail de configuration est effectué au sein du script \lstinline!config_mmonit.sh! .
+Le travail de configuration est effectué au sein du script \lstinline!config\ mmonit.sh! .
 
 On installe d'abord un service systemd qui sera en charge de gérer M/Monit et on le lance.
 
