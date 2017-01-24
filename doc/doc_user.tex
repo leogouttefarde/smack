@@ -229,39 +229,47 @@ Si c'est le cas, le service est automatiquement redémarré sous 2 minutes maxim
 Il est également possible de forcer le démarrage d'un service, l'arrêter, le redémarrer ou lancer un monitoring de service manuellement au lieu d'attendre.
 
 Aussi, il possible d'effectuer différentes statistiques sur le cluster et de consulter le journal des événements.
+
+
 \subsection{Mesos}
-Mesos fournit lui aussi une interface web pratique pour la supervision de l'état du cluster mesos, accessible depuis le port 5050 par défaut de chacun des masters.
+
+Mesos fournit lui aussi une interface Web pratique pour la supervision de l'état du cluster Mesos, accessible depuis le port 5050 par défaut sur chacun des masters.
+
 \begin{figure}[H]
     \centering
     \centerline{\includegraphics[scale=0.23]{res/mesos.png}}
     \caption{Web UI d'accueil de Mesos}
 \end{figure}
-Comme on peut le voir, l'interface fournit des informations utiles sur l'utilisation des ressources des différents agents du cluster. Elle donne également une vue globale sur les différentes taches en cours déployées sur le cluster. \\Lorsqu'on clique sur le bouton "Frameworks" au niveau de la barre de navigation, on obtient une interface contenant plus de détails sur les frameworks déployés sur les noeuds.
+Comme on peut le voir, l'interface fournit des informations utiles sur l'utilisation des ressources des différents agents du cluster. Elle donne également une vue globale sur les différentes tâches en cours déployées sur le cluster. \\Lorsqu'on clique sur le bouton "Frameworks" au niveau de la barre de navigation, on obtient une interface contenant plus de détails sur les frameworks déployés sur les noeuds.
 \begin{figure}[H]
     \centering
     \centerline{\includegraphics[scale=0.23]{res/fra.png}}
-    \caption{Vue détaillées sur les frameworks en cours}
+    \caption{Vue détaillée des frameworks en cours}
 \end{figure}
-Dans cet exemple-ci, un job spark est lancé. On peut cliquer sur le lien du framework pour obtenir des détails les éxecuteurs de ses jobs.
+Dans cet exemple-ci, un job spark est lancé. On peut cliquer sur le lien du framework pour obtenir des détails les exécuteurs du jobs.\\
+
+
 \begin{figure}[H]
     \centering
     \centerline{\includegraphics[scale=0.23]{res/tasks.png}}
     \caption{Vue détaillées sur les taches d'un framework}
 \end{figure}
-Quand on clique sur l'url du WEB UI visible sur la barre gauche de la page, on accède à l'interface web de spark valable pour toute la durée du job.
+Quand on clique sur l'url du Web UI visible sur la barre gauche de la page, on accède à l'interface web de spark valable pour toute la durée du job.
 \newpage
 \subsection{Spark}
-L'interface d'accueil donne une vue générale sur tous les jobs en cours et leurs états d'avancement.
+L'interface d'accueil donne une vue générale sur tous les jobs en cours et leur état d'avancement.
 \begin{figure}[H]
     \centering
     \centerline{\includegraphics[scale=0.23]{res/sphome.png}}
-    \caption{Vue générale sur les différents jobs Spark}
+    \caption{Vue générale des différents jobs Spark}
 \end{figure}
-On peut choisir de voir encore plus de détail sur les étapes internes du job. On a également accès au DAG du job, qui en est une représentation en graphe direct acyclique.
+On peut choisir de voir encore plus de détails sur les étapes internes du job. On a également accès au DAG du job, qui en est une représentation en graphe direct acyclique.\\
+
+
 \begin{figure}[H]
     \centering
     \centerline{\includegraphics[scale=0.23]{res/jobdetails.png}}
-    \caption{Vue détaillée sur un job Spark}
+    \caption{Vue détaillée d'un job Spark}
 \end{figure}
 
 
