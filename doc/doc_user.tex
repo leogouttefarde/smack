@@ -260,7 +260,7 @@ Le consommateur Kafka est un programme écrit en Scala et exécuté avec Spark. 
 
 Pour ceci, on met le programme dans un dossier main qui lui même est contenu dans un dossier src, ensuite, à la racine du projet, on crée un fichier SBT qui contient toutes les dépendances dont on aura besoin lors de la compilation du programme (dépendances de Kafka, Cassandra, etc.) avec leurs versions spécifiées. La commande "sbt package" permet alors de générer ce jar, qui sera exécuté ensuite avec spark-submit (le connecteur de Cassandra est spécifié après --packages, et les jars externes après --jars et séparés par des virgules).
 
-Chaque 40ms, le consommateur "consulte" le broker Kafka pour voir s'il y'a des lignes à "consommer" (un offset l'aide à savoir où il en est). Les lignes du fichier des données sont ensuite converties en dataframes et insérées dans la base de données Cassandra (qui était crée tout au début).
+Chaque 40ms, le consommateur "consulte" le broker Kafka pour voir s'il y'a des lignes à "consommer" (un offset l'aide à savoir où il en est). Les lignes du fichier des données sont ensuite converties en dataframes et insérées dans la base de données Cassandra (qui a été créée au début).
  
 
 \subsection {Le traitement des données}
@@ -298,7 +298,7 @@ Remarques :
 Les brokers de Kafka doivent être indiqués dans les deux premiers programmes (pour l'écriture et la lecture).
 
 \item
-On a 2 datacenters avec un degré de réplication de 3.
+Dans Cassandra, on a 2 datacenters avec une stratégie de réplication “Network Topology Strategy” et  un degré de 3
  
 \end{itemize}
 
