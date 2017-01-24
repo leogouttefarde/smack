@@ -1,0 +1,11 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Mise en route}{2}{section.1}
+\contentsline {section}{\numberline {2}Installation / d\IeC {\'e}sinstallation}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Premi\IeC {\`e}re installation}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Installation}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}D\IeC {\'e}sinstallation}{2}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Mise \IeC {\`a} jour des scripts}{2}{subsection.2.4}
+\contentsline {section}{\numberline {3}Supervision du cluster}{2}{section.3}
+\contentsline {section}{\numberline {4}Application de d\IeC {\'e}monstration}{3}{section.4}
+\contentsline {subsection}{\numberline {4.1}L'int\IeC {\'e}gration de donn\IeC {\'e}es}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Le traitement des donn\IeC {\'e}es}{4}{subsection.4.2}
