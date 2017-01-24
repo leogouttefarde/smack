@@ -119,6 +119,105 @@ Pour mettre à jour les scripts, il suffit de lancer le script \lstinline!~/scri
 
 
 
+\section {Gestion du cycle de vie}
+
+\subsection {Démarrage}
+
+\subsubsection*{run\_cassandra\_cluster.sh}
+Permet de lancer les processus Cassandra sur tous les noeuds du cluster en appellant \lstinline!run_cassandra_local.sh! sur chaque noeud.
+Le script inverse est \lstinline!stop_cassandra_cluster.sh! .
+
+\subsubsection*{run\_cassandra\_local.sh}
+Permet de lancer les processus Cassandra sur un hôte, il détecte aussi l'état du noeud Cassandra pour décider de la manière du lancement (start normal ou remplacement).
+Le script inverse est \lstinline!kill_mesos_processes.sh! .
+
+\subsubsection*{run\_kafka\_cluster.sh}
+Permet de lancer le scheduler kafka et de démarrer les brokers. Le nombre de ceux-ci est passé en argument.
+Le script inverse est \lstinline!stop_kafka_cluster.sh! .
+
+\subsubsection*{run\_mesos\_cluster.sh}
+Permet de démarrer le cluster mesos sur tous les maîtres et esclaves du cluster.
+Le script inverse est \lstinline!stop_mesos_cluster.sh! .
+
+\subsubsection*{run\_mesos\_local.sh}
+Permet de démarrer les daemons mesos. La commande de démarrage est différente selon le type de l'hôte.
+Le script inverse est \lstinline!kill_mesos_processes.sh! .
+
+
+
+\subsection {Arrêt}
+
+\subsubsection*{stop\_cassandra\_cluster.sh}
+Arrête le cluster Cassandra.
+
+
+\subsubsection*{stop\_kafka\_cluster.sh}
+Arrête le cluster Kafka.
+
+
+\subsubsection*{stop\_mesos\_cluster.sh}
+Arrête le cluster Mesos.
+
+
+\subsubsection*{kill\_cassandra\_processes.sh}
+
+Tue les processus Cassandra localement.
+
+
+\subsubsection*{kill\_cassandra\_server.sh}
+
+Tue les processus Cassandra sur le serveur fourni en paramètre.
+
+
+\subsubsection*{kill\_mesos\_server.sh}
+
+Tue les processus Mesos sur le serveur fourni en paramètre.
+
+
+\subsubsection*{kill\_mesos\_processes.sh}
+
+Tue les processus Mesos localement.
+
+
+\subsubsection*{kill\_kafka\_broker.sh}
+
+Tue le brokers Kafka de numéro fourni en paramètre.
+
+
+
+\subsection {Utilitaires}
+
+\subsubsection*{cassandra\_status.sh}
+
+Affiche l'état du cluster Cassandra.
+
+
+\subsubsection*{install\_hosts.sh}
+Permet de configurer le fichier \lstinline!/etc/hosts! sur toutes les machines en appellant le script \lstinline!declare_hosts.sh! sur chacune de celles-ci.
+Le script inverse est \lstinline!uninstall_hosts.sh! .
+
+
+\subsubsection*{update\_setup.sh}
+
+Met à jour les différents scripts sur tous les noeuds du cluster.
+
+
+\subsubsection*{declare\_hosts.sh}
+
+Permet de configurer, ou de rétablir l'ancienne configuration des hôtes en cas de désinstallation.
+
+
+\subsubsection*{version.sh}
+
+Affiche le hash MD5 de l'archive actuellement installée.
+
+
+\subsubsection*{run\_cmd\_all.sh}
+
+Lance la commande fourni en paramètre sur tous les noeuds.
+
+
+
 \section {Supervision du cluster}
 \subsection{M/Monit}
 
@@ -164,6 +263,8 @@ On peut choisir de voir encore plus de détail sur les étapes internes du job. 
     \centerline{\includegraphics[scale=0.23]{res/jobdetails.png}}
     \caption{Vue détaillée sur un job Spark}
 \end{figure}
+
+
 \newpage
 
 \section {Application de démonstration}
@@ -192,8 +293,8 @@ Le consommateur Kafka est un programme écrit en Scala et exécuté avec Spark. 
 
 Pour ceci, on met le programme dans un dossier main qui lui même est contenu dans un dossier src, ensuite, à la racine du projet, on crée un fichier SBT qui contient toutes les dépendances dont on aura besoin lors de la compilation du programme (dépendances de Kafka, Cassandra, etc.) avec leurs versions spécifiées. La commande "sbt package" permet alors de générer ce jar, qui sera exécuté ensuite avec spark-submit (le connecteur de Cassandra est spécifié après --packages, et les jars externes après --jars et séparés par des virgules).
 
-Chaque 40ms, le consommateur "consulte" le broker Kafka pour voir s'il y'a des lignes à "consommer" (un offset l'aide à savoir où il en est). Les lignes du fichier des données sont ensuite converties en dataframes et insérées dans la base de données Cassandra (qui était crée tout au début).
-
+Chaque 40ms, le consommateur "consulte" le broker Kafka pour voir s'il y'a des lignes à "consommer" (un offset l'aide à savoir où il en est). Les lignes du fichier des données sont ensuite converties en dataframes et insérées dans la base de données Cassandra (qui a été créée au début).
+ 
 
 \subsection {Le traitement des données}
 
@@ -230,7 +331,7 @@ Remarques :
 Les brokers de Kafka doivent être indiqués dans les deux premiers programmes (pour l'écriture et la lecture).
 
 \item
-On a 2 datacenters avec un degré de réplication de 3.
+Dans Cassandra, on a 2 datacenters avec une stratégie de réplication “Network Topology Strategy” et  un degré de 3
  
 \end{itemize}
 
