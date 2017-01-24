@@ -495,6 +495,51 @@ ZIP=~/setup.zip; cd ~; wget -O $ZIP \
 Ceci permet de facilement pouvoir commencer une première installation sans avoir à effectuer des manipulations complexes.
 
 
+\subsection {Lancement des scripts depuis le cluster}
+
+Les différents scripts sont prévus pour être exécutés directement depuis l'une des machines du cluster de la stack. Cela permet d‘en simplifier le fonctionnement.
+
+
+\subsection {Mise à jour de l'environnement d'installation}
+
+L'ensemble des scripts utilisés sont installés et mis à jour via le téléchargement et l'extraction d'un fichier ZIP dédié disponible en ligne. Cela permet de simplifier le processus d'installation.
+
+
+
+
+\subsection {Tolérance aux fautes}
+
+Pour l'aspect tolérance aux fautes et redémarrage automatique des services qui pourraient tomber en panne, nous avons utilisé l'outil demandé, Monit.
+
+De plus, nous avons installé l'interface web M/Monit qui permet de facilement superviser l'intégralité du cluster et effectuer des actions de monitoring.
+
+
+\subsubsection {Installation}
+
+Pour l'installation, on procède d'abord à un arrêt de Monit au cas ou une ancienne version serait déjà en exécution.
+
+Ensuite, on installe Monit depuis les packages de la machine. Seulement, pour M/Monit il faut au moins la version 5.20.0 de Monit, qui n'est pas disponible sur les packages de Ubuntu 16.04 LTS. Ainsi on télécharge la version 5.20 et on remplace l'exécutable installé par la bonne version. Après cela, on lance Monit.
+
+Vient alors l'installation de M/Monit, pour cela on télécharge simplement l'archive que l'on extrait dans le répertoire home.
+
+
+\subsubsection {Configuration}
+
+Le travail de configuration est effectué au sein du script \lstinline!config_mmonit.sh! .
+
+On installe d'abord un service systemd qui sera en charge de gérer M/Monit et on le lance.
+
+Ensuite on configure Monit de manière à ce que toutes les machines machines puissent collecter les données Monit de chaque machines au sein de M/Monit.
+
+Finalement on ajoute les différents services à monitorer à l'aide de Monit : Cassandra, Mesos, Kafka.
+Pour prendre on compte la nouvelle configuration de Monit, on effectue aussi un rechargement.
+
+
+\subsubsection {Architecture SPOF-less}
+
+TODO
+
+
 
 \end{document}
 
