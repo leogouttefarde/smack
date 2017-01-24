@@ -54,7 +54,7 @@
 \end{center}}
 
 
-\title {{ {\huge Documentation du projet SMACK }} }
+\title {{ {\huge Documentation technique du projet SMACK }} }
 
 \author{%\Large Equipe ?? \\
 %\\
@@ -68,7 +68,7 @@
     {\sc Nahyl}~Othmane
 }
 
-\date{Vendredi 25 Novembre 2016}
+\date{Mardi 24 Janvier 2017}
 
 \lhead{Projet SMACK}
 \rhead{Documentation}
@@ -451,6 +451,49 @@ Un consommateur voit les messages dans l'ordre dans lequel ils sont enregistrés
 % % \caption{Diagramme des cas d'utilisation}
 % % \end{figure}
 % \end{center}
+
+
+
+
+\section {Structure générale et description du projet}
+
+Les différents scripts du projets sont réalisés en bash.
+
+\noindent On en distaingue plusieurs types :
+
+\begin{itemize}
+
+\item
+les scripts communs contenants des fonctions, variables et autres données partagées
+
+\item
+les scripts d'installation et de configuration
+
+\item
+les scripts de désinstallation
+
+\item
+les scripts de lancements des composants de la stack
+
+\item
+les scripts d'arrêt des composants de la stack
+
+\end{itemize}
+
+
+
+\subsection {Installation one-liner}
+
+L'installation initiale de l'environnement est réalisée à l'aide d'une unique commande à exécuter sur l'une des machines du cluster :
+
+\begin{verbatim}
+ZIP=~/setup.zip; cd ~; wget -O $ZIP \
+  https://raw.githubusercontent.com/leogouttefarde/smack/master/setup.zip; \
+  sudo apt -y install unzip; unzip -o $ZIP
+\end{verbatim}
+
+Ceci permet de facilement pouvoir commencer une première installation sans avoir à effectuer des manipulations complexes.
+
 
 
 \end{document}
