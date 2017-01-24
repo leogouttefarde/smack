@@ -76,7 +76,7 @@ Run `~/scripts/kill_kafka_broker.sh <brokerNumber>`
 
 ### Preliminary demo
 
-`unzip -o app_demo.zip; cd ~/app_demo; sudo ../spark-2.0.2-bin-hadoop2.7/bin/spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11  --class "SimpleApp" --master mesos://zk://server-1:2181/mesos target/scala-2.11/simple-project_2.11-1.0.jar`
+`wget -O ~/app_demo.zip https://github.com/leogouttefarde/smack/blob/master/app_demo.zip?raw=true; unzip -o app_demo.zip; cd ~/app_demo; sudo ../spark-2.0.2-bin-hadoop2.7/bin/spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11  --class "SimpleApp" --master mesos://zk://server-1:2181/mesos target/scala-2.11/simple-project_2.11-1.0.jar`
 
 ### Final demo
 
