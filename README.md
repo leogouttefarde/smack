@@ -72,15 +72,18 @@ Run `~/scripts/kill_cassandra_server.sh <server>`
 
 Run `~/scripts/kill_kafka_broker.sh <brokerNumber>`
 
-### Lanching the app_demo 
-cd ~/app_demo
-sudo ../spark-2.0.2-bin-hadoop2.7/bin/spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11  --class "SimpleApp" --master mesos://zk://server-1:2181/mesos target/scala-2.11/simple-project_2.11-1.0.jar
+## Demo
 
-### Launch producer
+### Preliminary demo
+
+unzip -o app_demo.zip; cd ~/app_demo; sudo ../spark-2.0.2-bin-hadoop2.7/bin/spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11  --class "SimpleApp" --master mesos://zk://server-1:2181/mesos target/scala-2.11/simple-project_2.11-1.0.jar
+
+### Final demo
+#### Launching the producer
 scala -classpath "lib/kafka_2.11-0.8.2.0.jar:lib/kafka-clients-0.8.2.0.jar:lib/scala-library-2.10.4.jar:lib/slf4j-api-1.7.2.jar:target/scala-2.10/spark-example-kafka_2.10-1.0.jar" ProducerTest
 
-## Launch consumer
+#### Launching the consumer
 sudo ../spark-2.0.2-bin-hadoop2.7/bin/spark-submit --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11 --jars lib/kafka_2.11-0.10.1.0.jar,lib/kafka-clients-0.10.1.0.jar,lib/slf4j-api-1.7.2.jar   --class "ConsumerToSpark"  target/scala-2.11/spark-example-kafka_2.11-1.0.jar
 
-## Launch app_demo_V2
+#### Launching the demo
 sudo ./spark-2.0.2-bin-hadoop2.7/bin/spark-submit  --packages datastax:spark-cassandra-connector:2.0.0-M2-s_2.11  --class "batch.SelectJob"  simple-project_2.11-1.0.jar
