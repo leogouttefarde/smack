@@ -507,55 +507,56 @@ L'ensemble des scripts utilisés sont installés et mis à jour via le télécha
 
 \subsection {Fonctionnement / organisation des scripts}
 
-\subsection{Scripts d'installation/configuration}
+\subsection{Scripts d'installation / configuration}
 
-\paragraph{update\_setup.sh}
+\subsubsection*{install\_all.sh}
+Permet le lancement de l'installation sur toutes les machines en appellant le script server\_install.sh sur chacune de celles-ci. Le script est appellé de manière différente selon l'hôte en question (master ou slave). Le script inverse est : uninstall\_all.sh
 
+\subsubsection*{update\_setup.sh}
 Met à jour les différents scripts au niveau de toutes les machines
 
-\paragraph{install\_all.sh}
-Permet le lancement de l'installation dans toutes les machines en appellant le script server\_install.sh dans chacune de celles-ci. Le script est appellé de manière différente selon l'hôte en question (master ou slave). Le script inverse est: unistall\_all.sh
-
-
-\paragraph{server\_install.sh}
+\subsubsection*{server\_install.sh}
 Permet de lancer l'installation sur une machine.
 Premièrement, le script vérifie si l'installation n'est pas encore faite avant d'installer et de configurer les hôtes, mmonit et les autres dépendances. L'installation est bien évidemment différente selon le type de l'hôte, ce contrôle est fait à l'aide d'un argument passé au script. Le script inverse est: server\_uninstall.sh
 
-\paragraph{install\_hosts.sh}
-Permet de configurer le fichier /etc/hosts dans toutes les machines en appellant le script declare\_hosts.sh dans chacune de celles-ci. Le script inverse est: uninstall\_hosts.sh
+\subsubsection*{install\_hosts.sh}
+Permet de configurer le fichier /etc/hosts sur toutes les machines en appellant le script declare\_hosts.sh sur chacune de celles-ci. Le script inverse est : uninstall\_hosts.sh
 
 
-\paragraph{declare\_hosts.sh}
+\subsubsection*{declare\_hosts.sh}
 Permet de configurer, ou de rétablir l'ancienne configuration des hôtes en cas de désinstallation.
 
-\paragraph{install\_node\_deps.sh:}
+\subsubsection*{install\_node\_deps.sh:}
 Permet d'installer les dépendances des différents frameworks et de les configurer selon le type de la machine (Master, esclave ou manager).
 
-\paragraph{config\_mmonit.sh}
-Permet de configurer les processus et hotes monitorés par monit.
+\subsubsection*{config\_mmonit.sh}
+Permet de configurer les processus et hôtes monitorés par Monit.
 
-\paragraph{install\_cassandra.sh}
-Permet l'installation et la configuration de cassandra dans une machine. L’installation est identique dans toutes les machines (peer to peer).
+\subsubsection*{install\_cassandra.sh}
+Permet l'installation et la configuration de cassandra sur une machine. L'installation est identique sur toutes les machines (peer to peer).
 
 
 \subsection{Démarrage / arrêt des composants de la stack et automatisation}
-\paragraph{run\_cassandra\_cluster.sh}
-Permet de lancer les processus cassandra dans tous les noeuds du cluster en appellant le run\_cassandra\_local.sh dans chacun de ceux-ci. \\Le script inverse est stop\_cassandra\_cluster.sh
+\subsubsection*{run\_cassandra\_cluster.sh}
+Permet de lancer les processus cassandra sur tous les noeuds du cluster en appellant run\_cassandra\_local.sh sur chaque noeud.
+Le script inverse est stop\_cassandra\_cluster.sh
 
-\paragraph{run\_cassandra\_local.sh}
-Permet de lancer les processus cassandra dans un hôte, il détecte aussi l’état du noeud cassandra pour décider de la manière du lancement (start normal ou remplacement). Le escript inverse est : kill\_mesos\_processes.sh
+\subsubsection*{run\_cassandra\_local.sh}
+Permet de lancer les processus cassandra sur un hôte, il détecte aussi l'état du noeud cassandra pour décider de la manière du lancement (start normal ou remplacement). Le script inverse est : kill\_mesos\_processes.sh
 
-\paragraph{run\_kafka\_cluster.sh}
+\subsubsection*{run\_kafka\_cluster.sh}
 Permet de lancer le scheduler kafka et de démarrer les brokers. Le nombre de ceux-ci est passé en argument. Le script inverse est stop\_kafka\_cluster.sh
 
-\paragraph{run\_mesos\_cluster.sh}
-Permet de démarrer le cluster mesos sur tous les maîtres et esclaves du cluster.Le script inverse est stop\_mesos\_cluster.sh
+\subsubsection*{run\_mesos\_cluster.sh}
+Permet de démarrer le cluster mesos sur tous les maîtres et esclaves du cluster.
+Le script inverse est stop\_mesos\_cluster.sh
 
-\paragraph{run\_mesos\_local.sh}
-Permet de démarrer les daemons mesos. La commande de démarrage est différente selon le type du hôte.Le script inverse est kill\_mesos\_processes.sh
+\subsubsection*{run\_mesos\_local.sh}
+Permet de démarrer les daemons mesos. La commande de démarrage est différente selon le type de l'hôte.
+Le script inverse est kill\_mesos\_processes.sh
 
-\paragraph{add\_kafka\_topic.sh}
-Permet d’ajouter un topic en interactif  selon les besoins de l’application à déployer sur le cluster.
+\subsubsection*{add\_kafka\_topic.sh}
+Permet d'ajouter un topic en interactif selon les besoins de l'application à déployer sur le cluster.
 
 
 
