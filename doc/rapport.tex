@@ -510,17 +510,18 @@ L'ensemble des scripts utilisés sont installés et mis à jour via le télécha
 \subsection{Scripts d'installation / configuration}
 
 \subsubsection*{install\_all.sh}
-Permet le lancement de l'installation sur toutes les machines en appellant le script server\_install.sh sur chacune de celles-ci. Le script est appellé de manière différente selon l'hôte en question (master ou slave). Le script inverse est : uninstall\_all.sh
+Permet le lancement de l'installation sur toutes les machines en appellant le script \lstinline!server_install.sh! sur chacune de celles-ci. Le script est appellé de manière différente selon l'hôte en question (master ou slave). Le script inverse est : \lstinline!uninstall_all.sh!
 
 \subsubsection*{update\_setup.sh}
-Met à jour les différents scripts au niveau de toutes les machines
+Met à jour les différents scripts sur tous les noeuds du cluster.
 
 \subsubsection*{server\_install.sh}
 Permet de lancer l'installation sur une machine.
-Premièrement, le script vérifie si l'installation n'est pas encore faite avant d'installer et de configurer les hôtes, mmonit et les autres dépendances. L'installation est bien évidemment différente selon le type de l'hôte, ce contrôle est fait à l'aide d'un argument passé au script. Le script inverse est: server\_uninstall.sh
+Premièrement, le script vérifie si l'installation n'est pas encore faite avant d'installer et de configurer les hôtes, mmonit et les autres dépendances. L'installation est bien évidemment différente selon le type de l'hôte, ce contrôle est fait à l'aide d'un argument passé au script. Le script inverse est: \lstinline!server_uninstall.sh!
 
 \subsubsection*{install\_hosts.sh}
-Permet de configurer le fichier /etc/hosts sur toutes les machines en appellant le script declare\_hosts.sh sur chacune de celles-ci. Le script inverse est : uninstall\_hosts.sh
+Permet de configurer le fichier \lstinline!/etc/hosts! sur toutes les machines en appellant le script \lstinline!declare_hosts.sh! sur chacune de celles-ci.
+Le script inverse est \lstinline!uninstall_hosts.sh! .
 
 
 \subsubsection*{declare\_hosts.sh}
@@ -537,23 +538,26 @@ Permet l'installation et la configuration de cassandra sur une machine. L'instal
 
 
 \subsection{Démarrage / arrêt des composants de la stack et automatisation}
+
 \subsubsection*{run\_cassandra\_cluster.sh}
-Permet de lancer les processus cassandra sur tous les noeuds du cluster en appellant run\_cassandra\_local.sh sur chaque noeud.
-Le script inverse est stop\_cassandra\_cluster.sh
+Permet de lancer les processus Cassandra sur tous les noeuds du cluster en appellant \lstinline!run_cassandra_local.sh! sur chaque noeud.
+Le script inverse est \lstinline!stop_cassandra_cluster.sh! .
 
 \subsubsection*{run\_cassandra\_local.sh}
-Permet de lancer les processus cassandra sur un hôte, il détecte aussi l'état du noeud cassandra pour décider de la manière du lancement (start normal ou remplacement). Le script inverse est : kill\_mesos\_processes.sh
+Permet de lancer les processus Cassandra sur un hôte, il détecte aussi l'état du noeud Cassandra pour décider de la manière du lancement (start normal ou remplacement).
+Le script inverse est \lstinline!kill_mesos_processes.sh! .
 
 \subsubsection*{run\_kafka\_cluster.sh}
-Permet de lancer le scheduler kafka et de démarrer les brokers. Le nombre de ceux-ci est passé en argument. Le script inverse est stop\_kafka\_cluster.sh
+Permet de lancer le scheduler kafka et de démarrer les brokers. Le nombre de ceux-ci est passé en argument.
+Le script inverse est \lstinline!stop_kafka_cluster.sh! .
 
 \subsubsection*{run\_mesos\_cluster.sh}
 Permet de démarrer le cluster mesos sur tous les maîtres et esclaves du cluster.
-Le script inverse est stop\_mesos\_cluster.sh
+Le script inverse est \lstinline!stop_mesos_cluster.sh! .
 
 \subsubsection*{run\_mesos\_local.sh}
 Permet de démarrer les daemons mesos. La commande de démarrage est différente selon le type de l'hôte.
-Le script inverse est kill\_mesos\_processes.sh
+Le script inverse est \lstinline!kill_mesos_processes.sh! .
 
 \subsubsection*{add\_kafka\_topic.sh}
 Permet d'ajouter un topic en interactif selon les besoins de l'application à déployer sur le cluster.
@@ -588,9 +592,15 @@ Finalement on ajoute les différents services à monitorer à l'aide de Monit : 
 Pour prendre on compte la nouvelle configuration de Monit, on effectue aussi un rechargement.
 
 
-\subsubsection {Architecture SPOF-less}
-Le composant principal permettant l'absence de single point of failure dans notre architecture est le service de coordination Zookeeper.
-\\Tous les mécanismes de tolérence aux fautes proposés par mesos se basent sur ce service. En effet, notre architecture comporte 3 masters, deux en standby et un master en marche. \\Ceci permet donc la tolérance d'une panne au niveau des masters selon le principe du quorum. \\En cas de panne du master courant, zookeeper permet l'élection d'un nouveau master, et grâce au principe de checkpointing, les taches courantes sont reprises sans perte d'avancement.
+\subsubsection {Architecture SPOF-Less}
+
+Le composant principal permettant l'absence de single point of failure dans notre architecture est le service de coordination ZooKeeper.
+Tous les mécanismes de tolérence aux fautes proposés par Mesos se basent sur ce service.
+
+En effet, notre architecture comporte 3 masters, deux en standby et un master en marche.
+Ceci permet la tolérance d'une panne au niveau des masters selon le principe du quorum.
+
+En cas de panne du master courant, ZooKeeper permet l'élection d'un nouveau master, et grâce au principe de checkpointing, les tâches courantes sont reprises sans perte d'avancement.
 
 
 \end{document}
